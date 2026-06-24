@@ -57,10 +57,6 @@ Development Goals
 * Dynamic cyber-space visuals
 * Mobile-first gameplay
 
-Status
-
-Active Development
-
-Current Version: V1.6
+Status - Active Development
 
 Official Project Name: NOIZE / RUNNER

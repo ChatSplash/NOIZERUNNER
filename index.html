@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>NOIZE / RUNNER</title>
+<style>
+:root{
+  --cyan:#35dfff;
+  --mint:#69ffd0;
+  --pink:#ff2d78;
+  --violet:#b544ff;
+  --bg:#010305;
+  --text:#effff9;
+}
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+  -webkit-user-select:none;
+  user-select:none;
+}
+html,body{
+  margin:0;
+  width:100%;
+  min-height:100%;
+  overflow-x:hidden;
+  background:#010305;
+  color:var(--text);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+body{overscroll-behavior:none}
+#hero{
+  position:relative;
+  width:100%;
+  min-height:100svh;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 20%,rgba(181,68,255,.16),transparent 44%),
+    radial-gradient(circle at 18% 58%,rgba(53,223,255,.1),transparent 38%),
+    radial-gradient(circle at 78% 70%,rgba(255,45,120,.1),transparent 44%),
+    #010305;
+}
+#threeStage{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+}
+#bannerWrap{
+  position:relative;
+  z-index:3;
+  width:100%;
+  height:clamp(245px,38vh,560px);
+  overflow:hidden;
+  background:transparent;
+  transform:translateY(-12px);
+  margin-bottom:-10px;
+}
+#banner{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+  filter:saturate(1.22) contrast(1.04);
+}
+#content{
+  position:relative;
+  z-index:5;
+  min-height:calc(100svh - clamp(245px,38vh,560px));
+  padding:36px 22px calc(env(safe-area-inset-bottom,0px) + 24px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+#content:before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:0;
+  width:min(760px,94vw);
+  height:62%;
+  transform:translateX(-50%);
+  z-index:-1;
+  background:radial-gradient(ellipse at center,rgba(1,3,5,.64),rgba(1,3,5,.18) 58%,transparent 76%);
+  filter:blur(14px);
+  pointer-events:none;
+}
+.kicker{
+  margin-top:10px;
+  font-size:11px;
+  letter-spacing:.34em;
+  color:rgba(239,255,249,.74);
+  text-shadow:0 0 16px rgba(53,223,255,.58);
+}
+.title{
+  margin:18px 0 16px;
+  font-size:clamp(42px,11vw,102px);
+  line-height:.82;
+  letter-spacing:.08em;
+  font-weight:1000;
+  text-shadow:
+    0 0 20px rgba(53,223,255,.9),
+    0 0 48px rgba(255,45,120,.55),
+    0 0 86px rgba(181,68,255,.38);
+}
+.subtitle{
+  max-width:720px;
+  font-size:clamp(13px,2.4vw,18px);
+  line-height:1.55;
+  color:rgba(239,255,249,.74);
+  text-shadow:0 2px 18px rgba(0,0,0,.8);
+}
+.actions{
+  margin-top:auto;
+  padding-top:34px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-end;
+  gap:18px;
+}
+.launch{
+  position:relative;
+  border:0;
+  border-radius:999px;
+  padding:18px 36px;
+  min-width:238px;
+  background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));
+  color:white;
+  font-weight:1000;
+  letter-spacing:.2em;
+  font-size:13px;
+  box-shadow:
+    0 0 22px rgba(53,223,255,.62),
+    0 0 46px rgba(255,45,120,.42);
+  cursor:pointer;
+  overflow:hidden;
+}
+.launch:active{transform:scale(.965)}
+.launch:before{
+  content:"";
+  position:absolute;
+  inset:-50%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.85),transparent);
+  transform:translateX(-80%) rotate(20deg);
+  animation:shine 3.2s infinite;
+}
+.launch span{position:relative;z-index:1}
+.note{
+  font-size:11px;
+  letter-spacing:.18em;
+  color:rgba(239,255,249,.5);
+  padding-bottom:2px;
+}
+#below{
+  position:relative;
+  z-index:4;
+  padding:38px 22px 54px;
+  background:#010305;
+}
+.cards{
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  width:min(880px,100%);
+}
+.card{
+  min-height:96px;
+  padding:16px 14px;
+  border-radius:18px;
+  border:1px solid rgba(105,255,208,.22);
+  background:linear-gradient(180deg,rgba(105,255,208,.1),rgba(3,10,18,.5));
+  box-shadow:0 0 26px rgba(53,223,255,.08);
+  backdrop-filter:blur(8px);
+  text-align:center;
+}
+.card b{
+  display:block;
+  font-size:12px;
+  letter-spacing:.24em;
+  color:white;
+  margin-bottom:8px;
+}
+.card span{
+  font-size:12px;
+  line-height:1.4;
+  color:rgba(239,255,249,.58);
+}
+.audioHint{
+  position:fixed;
+  right:14px;
+  bottom:calc(env(safe-area-inset-bottom,0px) + 14px);
+  z-index:20;
+  border:1px solid rgba(105,255,208,.18);
+  background:rgba(1,3,5,.44);
+  backdrop-filter:blur(10px);
+  color:rgba(239,255,249,.46);
+  border-radius:999px;
+  padding:9px 12px;
+  font-size:10px;
+  letter-spacing:.12em;
+  opacity:.72;
+}
+@keyframes shine{
+  0%{transform:translateX(-80%) rotate(20deg)}
+  42%,100%{transform:translateX(145%) rotate(20deg)}
+}
+@media (orientation:portrait){
+  #bannerWrap{
+    height:36vh;
+    min-height:240px;
+  }
+  #content{
+    min-height:64svh;
+    padding-top:42px;
+  }
+  .cards{grid-template-columns:1fr}
+  .subtitle{max-width:390px}
+}
+@media (orientation:landscape){
+  #bannerWrap{
+    height:53vh;
+    min-height:300px;
+  }
+  #content{
+    min-height:47svh;
+    margin-top:-6vh;
+    padding-top:20px;
+    padding-bottom:calc(env(safe-area-inset-bottom,0px) + 18px);
+  }
+  .title{font-size:clamp(42px,8vw,88px)}
+  .actions{padding-top:24px}
+}
+</style>
+</head>
+<body>
+<section id="hero">
+  <canvas id="threeStage"></canvas>
+  <div id="bannerWrap">
+    <img id="banner" src="https://files.catbox.moe/wur6nw.png" alt="NOIZE / RUNNER banner">
+  </div>
+  <div id="content">
+    <div class="kicker">SYNTH · SPEED · FREQUENCY</div>
+    <div class="title">NOIZE<br>RUNNER</div>
+    <div class="subtitle">
+      Sprint across living waveform terrain, generate music through movement, and cut through neon space with a glowing path of frequency.
+    </div>
+    <div class="actions">
+      <button class="launch" id="launchBtn"><span>LAUNCH GAME</span></button>
+      <div class="note">Best in landscape · iPhone touch optimized</div>
+    </div>
+  </div>
+</section>
+<section id="below">
+  <div class="cards">
+    <div class="card"><b>RUN</b><span>Fast side-view parkour across neon waveform terrain.</span></div>
+    <div class="card"><b>JUMP</b><span>Clean arcs, frequency trails, drops, and forward momentum.</span></div>
+    <div class="card"><b>PLAY</b><span>Movement, landings, and terrain pulse the soundtrack.</span></div>
+  </div>
+</section>
+<div class="audioHint" id="audioHint">TAP FOR AUDIO</div>
+<script type="module">
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
+const canvas=document.getElementById("threeStage");
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(48,innerWidth/innerHeight,.1,240);
+const renderer=new THREE.WebGLRenderer({
+  canvas,
+  alpha:true,
+  antialias:true,
+  powerPreference:"high-performance"
+});
+renderer.setSize(innerWidth,innerHeight);
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+const root=new THREE.Group();
+scene.add(root);
+scene.add(new THREE.HemisphereLight(0xcfffff,0x100216,1.35));
+const cyanLight=new THREE.PointLight(0x35dfff,1.7,48);
+cyanLight.position.set(-10,5,6);
+scene.add(cyanLight);
+const pinkLight=new THREE.PointLight(0xff2d78,1.55,48);
+pinkLight.position.set(10,5,2);
+scene.add(pinkLight);
+function makeStars(count,size,opacity,z){
+  const geo=new THREE.BufferGeometry();
+  const arr=[];
+  for(let i=0;i<count;i++){
+    arr.push(
+      (Math.random()-.5)*110,
+      Math.random()*50-18,
+      z-Math.random()*100
+    );
+  }
+  geo.setAttribute("position",new THREE.Float32BufferAttribute(arr,3));
+  const pts=new THREE.Points(
+    geo,
+    new THREE.PointsMaterial({
+      color:0xbffff9,
+      size,
+      transparent:true,
+      opacity,
+      depthWrite:false
+    })
+  );
+  root.add(pts);
+  return pts;
+}
+const stars1=makeStars(720,.075,.68,-12);
+const stars2=makeStars(260,.16,.42,-22);
+const grid=new THREE.Group();
+root.add(grid);
+const gridMat=new THREE.LineBasicMaterial({
+  color:0x1c7c88,
+  transparent:true,
+  opacity:.22,
+  depthWrite:false
+});
+for(let i=-32;i<=32;i++){
+  const g=new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(i*2.7,-3.15,-7),
+    new THREE.Vector3(i*2.7,-3.15,-118)
+  ]);
+  grid.add(new THREE.Line(g,gridMat));
+}
+for(let j=0;j<38;j++){
+  const z=-7-j*3;
+  const g=new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(-88,-3.15,z),
+    new THREE.Vector3(88,-3.15,z)
+  ]);
+  grid.add(new THREE.Line(g,gridMat));
+}
+const waveLines=[];
+function makeWaveLine(y,z,color,opacity,amp,width=74){
+  const geo=new THREE.BufferGeometry();
+  const pts=[];
+  for(let i=0;i<190;i++){
+    pts.push(new THREE.Vector3((i/189-.5)*width,y,z));
+  }
+  geo.setFromPoints(pts);
+  const line=new THREE.Line(
+    geo,
+    new THREE.LineBasicMaterial({
+      color,
+      transparent:true,
+      opacity,
+      depthWrite:false
+    })
+  );
+  line.userData={
+    baseY:y,
+    amp,
+    phase:Math.random()*Math.PI*2,
+    speed:.7+Math.random()*.7,
+    width
+  };
+  root.add(line);
+  waveLines.push(line);
+}
+for(let i=0;i<14;i++){
+  makeWaveLine(
+    -1.05+i*.27,
+    -10-i*3.8,
+    [0x35dfff,0xff2d78,0x69ffd0,0xb544ff][i%4],
+    .1+i*.012,
+    .07+i*.014,
+    76+i*3
+  );
+}
+const crystals=new THREE.Group();
+root.add(crystals);
+for(let i=0;i<32;i++){
+  const geo=Math.random()>.5
+    ?new THREE.IcosahedronGeometry(.22+Math.random()*.42,0)
+    :new THREE.OctahedronGeometry(.25+Math.random()*.48,0);
+  const mat=new THREE.MeshBasicMaterial({
+    color:[0x35dfff,0xff2d78,0x69ffd0,0xb544ff][i%4],
+    transparent:true,
+    opacity:.18+Math.random()*.22,
+    wireframe:true,
+    depthWrite:false
+  });
+  const m=new THREE.Mesh(geo,mat);
+  m.position.set(
+    (Math.random()-.5)*78,
+    Math.random()*18-5,
+    -8-Math.random()*58
+  );
+  m.userData={
+    rx:.2+Math.random()*.7,
+    ry:.2+Math.random()*.7,
+    phase:Math.random()*Math.PI*2
+  };
+  crystals.add(m);
+}
+const platforms=new THREE.Group();
+root.add(platforms);
+function platform(x,y,z,w,color){
+  const mat=new THREE.MeshBasicMaterial({
+    color,
+    transparent:true,
+    opacity:.22,
+    depthWrite:false
+  });
+  const body=new THREE.Mesh(new THREE.BoxGeometry(w,.1,1.1),mat);
+  body.position.set(x,y,z);
+  body.userData={w,color,phase:Math.random()*Math.PI*2};
+  platforms.add(body);
+  const edge=new THREE.LineSegments(
+    new THREE.EdgesGeometry(new THREE.BoxGeometry(w,.1,1.1)),
+    new THREE.LineBasicMaterial({
+      color,
+      transparent:true,
+      opacity:.42,
+      depthWrite:false
+    })
+  );
+  edge.position.copy(body.position);
+  edge.userData=body.userData;
+  platforms.add(edge);
+}
+for(let i=0;i<12;i++){
+  platform(
+    -44+i*8.8+Math.random()*2,
+    -2.2+Math.sin(i*.8)*.42,
+    -7-Math.random()*8,
+    4+Math.random()*4.2,
+    [0x35dfff,0xff2d78,0x69ffd0,0xb544ff][i%4]
+  );
+}
+const streaks=[];
+function makeStreak(){
+  const geo=new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(0,0,0),
+    new THREE.Vector3(-3.5-Math.random()*4,0,0)
+  ]);
+  const line=new THREE.Line(
+    geo,
+    new THREE.LineBasicMaterial({
+      color:[0x35dfff,0xff2d78,0x69ffd0][Math.floor(Math.random()*3)],
+      transparent:true,
+      opacity:.36,
+      depthWrite:false
+    })
+  );
+  line.position.set(
+    34+Math.random()*30,
+    -2+Math.random()*9,
+    -7-Math.random()*24
+  );
+  line.userData={
+    speed:.16+Math.random()*.22,
+    life:.4+Math.random()*.6
+  };
+  root.add(line);
+  streaks.push(line);
+}
+const pulseGroup=new THREE.Group();
+root.add(pulseGroup);
+const pulseGeo=new THREE.RingGeometry(.8,.86,48);
+const pulses=[];
+function makePulse(){
+  const mat=new THREE.MeshBasicMaterial({
+    color:[0x35dfff,0xff2d78,0x69ffd0][Math.floor(Math.random()*3)],
+    transparent:true,
+    opacity:.25,
+    side:THREE.DoubleSide,
+    depthWrite:false
+  });
+  const ring=new THREE.Mesh(pulseGeo,mat);
+  ring.position.set(
+    -4+Math.random()*12,
+    -1.8+Math.random()*.8,
+    -7-Math.random()*8
+  );
+  ring.rotation.x=Math.PI*.5;
+  ring.userData={life:1,scale:.4+Math.random()*.5};
+  pulseGroup.add(ring);
+  pulses.push(ring);
+}
+/* AUDIO: OFF BY DEFAULT. No sound on load. Starts only after tapping hint. */
+let audioCtx=null;
+let master=null;
+let droneGain=null;
+let audioOn=false;
+function startAudio(){
+  if(audioOn)return;
+  audioOn=true;
+  audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+  master=audioCtx.createGain();
+  master.gain.value=.018;
+  master.connect(audioCtx.destination);
+  const filter=audioCtx.createBiquadFilter();
+  filter.type="lowpass";
+  filter.frequency.value=520;
+  filter.Q.value=.45;
+  filter.connect(master);
+  droneGain=audioCtx.createGain();
+  droneGain.gain.value=.045;
+  droneGain.connect(filter);
+  const o1=audioCtx.createOscillator();
+  o1.type="sine";
+  o1.frequency.value=46;
+  const o2=audioCtx.createOscillator();
+  o2.type="triangle";
+  o2.frequency.value=92;
+  o1.connect(droneGain);
+  o2.connect(droneGain);
+  o1.start();
+  o2.start();
+  const hint=document.getElementById("audioHint");
+  hint.textContent="AUDIO ON";
+  setTimeout(()=>hint.style.opacity="0",900);
+}
+document.getElementById("audioHint").addEventListener("pointerdown",e=>{
+  e.stopPropagation();
+  startAudio();
+  if(audioCtx && audioCtx.state==="suspended")audioCtx.resume();
+},{passive:true});
+document.getElementById("launchBtn").onclick=()=>{
+  window.location.href="noizerunner.html";
+};
+let t=0;
+let lastPulse=0;
+function resize(){
+  camera.aspect=innerWidth/innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth,innerHeight);
+}
+addEventListener("resize",resize);
+function animate(){
+  requestAnimationFrame(animate);
+  t+=.016;
+  const portrait=innerHeight>innerWidth;
+  camera.position.z=portrait?25:18.5;
+  camera.position.y=portrait?6.4:5.3;
+  camera.lookAt(3,0,-15);
+  root.position.y=portrait?-1.45:-.58;
+  root.rotation.y=Math.sin(t*.18)*.022;
+  stars1.rotation.z+=.00028;
+  stars2.rotation.z-=.00042;
+  grid.position.x=(t*1.1)%2.7;
+  grid.position.z=(t*2.2)%3;
+  for(const line of waveLines){
+    const pos=line.geometry.attributes.position;
+    for(let i=0;i<pos.count;i++){
+      const q=i/(pos.count-1);
+      const x=(q-.5)*line.userData.width;
+      const y=line.userData.baseY+
+        Math.sin(i*.13+t*line.userData.speed+line.userData.phase)*line.userData.amp+
+        Math.sin(i*.037+t*.55)*line.userData.amp*.5;
+      pos.setXYZ(i,x,y,line.position.z);
+    }
+    pos.needsUpdate=true;
+  }
+  for(const c of crystals.children){
+    c.rotation.x+=.004*c.userData.rx;
+    c.rotation.y+=.005*c.userData.ry;
+    c.position.x-=.014;
+    if(c.position.x<-42)c.position.x=42;
+    c.material.opacity=.18+Math.sin(t*1.5+c.userData.phase)*.06+.08;
+  }
+  for(const p of platforms.children){
+    p.position.x-=.058;
+    p.position.y+=Math.sin(t*1.1+p.userData.phase)*.0014;
+    if(p.position.x<-48)p.position.x+=96;
+    if(p.material){
+      p.material.opacity=.18+Math.sin(t*1.7+p.userData.phase)*.04;
+    }
+  }
+  if(Math.random()<.026)makeStreak();
+  for(let i=streaks.length-1;i>=0;i--){
+    const s=streaks[i];
+    s.position.x-=s.userData.speed;
+    s.userData.life-=.012;
+    s.material.opacity=Math.max(0,s.userData.life)*.34;
+    if(s.position.x<-48 || s.userData.life<=0){
+      root.remove(s);
+      streaks.splice(i,1);
+    }
+  }
+  if(t-lastPulse>3.4+Math.sin(t*.35)*1.4){
+    lastPulse=t;
+    makePulse();
+  }
+  for(let i=pulses.length-1;i>=0;i--){
+    const p=pulses[i];
+    p.userData.life-=.016;
+    p.userData.scale+=.03;
+    p.scale.setScalar(p.userData.scale);
+    p.material.opacity=p.userData.life*.2;
+    if(p.userData.life<=0){
+      pulseGroup.remove(p);
+      pulses.splice(i,1);
+    }
+  }
+  if(audioOn && droneGain){
+    droneGain.gain.value=.038+Math.sin(t*.5)*.008;
+  }
+  renderer.render(scene,camera);
+}
+animate();
+</script>
+</body>
+</html>

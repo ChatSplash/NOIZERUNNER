@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>NOIZE / RUNNER V3.4</title>
+<title>NOIZE / RUNNER V3.5</title>
 <style>
 :root{--mint:#69ffd0;--cyan:#35dfff;--violet:#b544ff;--pink:#ff2d78;--bg:#010305;--text:#effff9;--muted:rgba(239,255,249,.62)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
@@ -18,7 +18,7 @@ canvas{display:block;touch-action:none}
 #hudBox{position:relative;z-index:50;min-width:136px;padding:27px 10px 8px;border-radius:14px;border:1px solid rgba(105,255,208,.26);background:linear-gradient(180deg,rgba(105,255,208,.11),rgba(3,12,16,.48));box-shadow:0 0 22px rgba(53,223,255,.12);font:11px/1.3 ui-monospace,SFMono-Regular,Menlo,monospace;pointer-events:auto;overflow:hidden;transition:.25s ease}
 #hudBox.open{width:min(470px,92vw);max-height:calc(100vh - 90px);overflow:auto;background:rgba(2,9,13,.95);box-shadow:0 0 42px rgba(53,223,255,.28)}
 #hudToggle{position:absolute;top:5px;right:8px;width:22px;height:20px;border:1px solid rgba(255,255,255,.35);border-radius:5px;color:#effff9;background:rgba(255,255,255,.06);font:900 12px/18px ui-monospace,SFMono-Regular,Menlo,monospace;text-align:center;z-index:4}
-.row{display:flex;justify-content:space-between;gap:10px;padding-right:0}
+.row,.scoreLine{display:flex;justify-content:space-between;gap:10px}
 #modePill{position:relative;margin-top:6px;padding:5px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);font-size:10px;letter-spacing:.14em;text-align:center;overflow:hidden}
 #modeFill{position:absolute;left:0;bottom:0;height:2px;width:0%;background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));box-shadow:0 0 10px var(--cyan)}
 #console{display:none;margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.18);font:11px/1.35 ui-monospace,SFMono-Regular,Menlo,monospace;color:rgba(239,255,249,.78)}
@@ -26,7 +26,6 @@ canvas{display:block;touch-action:none}
 .switcher{display:flex;align-items:center;justify-content:space-between;gap:8px;color:white;letter-spacing:.14em;font-weight:900;margin:7px 0 6px}
 .swBtn{width:30px;height:24px;border-radius:7px;border:1px solid rgba(105,255,208,.35);background:rgba(105,255,208,.08);color:#69ffd0;font:900 13px/22px ui-monospace,SFMono-Regular,Menlo,monospace;text-align:center;pointer-events:auto}
 .switchTitle{flex:1;text-align:center}
-.scoreLine{display:flex;justify-content:space-between;gap:8px}
 hr{border:0;border-top:1px solid rgba(255,255,255,.2);margin:8px 0}
 .consoleInput{display:flex;align-items:center;gap:6px;margin:5px 0}
 .consoleInput input{width:92px;background:rgba(255,255,255,.08);border:1px solid rgba(105,255,208,.35);border-radius:7px;color:white;font:12px ui-monospace,SFMono-Regular,Menlo,monospace;padding:4px 6px;text-transform:uppercase;pointer-events:auto}
@@ -36,8 +35,7 @@ hr{border:0;border-top:1px solid rgba(255,255,255,.2);margin:8px 0}
 .usersHead{margin-top:9px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.14);padding-top:8px;color:white;letter-spacing:.12em;font-weight:900;pointer-events:auto}
 #usersPanel{display:none;margin-top:7px;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:8px;background:rgba(255,255,255,.035)}
 .userRow{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.06);pointer-events:auto}
-.userRow:last-child{border-bottom:0}
-.dot{font-size:10px;margin-right:5px}.userName{color:white}
+.userRow:last-child{border-bottom:0}.dot{font-size:10px;margin-right:5px}.userName{color:white}
 .userViewTop{display:flex;justify-content:space-between;color:white;margin-bottom:6px}
 .diamondRail{position:relative;display:flex;justify-content:center;align-items:center;gap:17px;margin:14px 0 2px;padding:3px 0}
 .diamondRail:before{content:"";position:absolute;left:calc(50% - 83px);right:calc(50% - 83px);height:2px;background:linear-gradient(90deg,rgba(255,255,255,.18),rgba(105,255,208,.55),rgba(255,255,255,.18));box-shadow:0 0 9px rgba(105,255,208,.26)}
@@ -79,7 +77,7 @@ body.consoleOpen #centerMessage{opacity:.12;transform:translate(-50%,-50%) scale
       <div id="infoBtn">i</div>
       <div>
         <div class="logo">NOIZE / RUNNER</div>
-        <div class="sub">FREQUENCY PLATFORMER V3.4</div>
+        <div class="sub">FREQUENCY PLATFORMER V3.5</div>
       </div>
     </div>
     <div id="hudBox">
@@ -111,7 +109,6 @@ body.consoleOpen #centerMessage{opacity:.12;transform:translate(-50%,-50%) scale
           <div id="statsPanel">
             <div class="scoreLine"><span>USER</span><b id="profileUser">ANON</b></div>
             <div class="scoreLine"><span>BEST</span><b id="pBest">0m</b></div>
-            <div class="scoreLine"><span>SCORE</span><b id="pScore">0pts</b></div>
             <div class="scoreLine"><span>ITEMS</span><b id="pItems">0</b></div>
             <div class="scoreLine"><span>FREQ SEQS</span><b id="pFreq">0</b></div>
             <div class="scoreLine"><span>NOTES HIT</span><b id="pNotes">0</b></div>
@@ -122,7 +119,7 @@ body.consoleOpen #centerMessage{opacity:.12;transform:translate(-50%,-50%) scale
             <div class="scoreLine"><span>RUN</span><b id="pRun">0s</b></div>
           </div>
           <div id="vsPanel" style="display:none">
-            <div class="scoreLine"><span>VS MODE</span><b>LOBBY</b></div>
+            <div class="scoreLine"><span>VS MODE</span><b>RTDB LOBBY</b></div>
             <hr>
             <div class="consoleInput"><button id="lobbyStart" class="smallBtn">START</button><button id="lobbyJoinMode" class="smallBtn">JOIN</button><button id="lobbyGo" class="smallBtn locked">LOCKED</button></div>
             <div id="lobbyBox"></div>
@@ -156,14 +153,13 @@ body.consoleOpen #centerMessage{opacity:.12;transform:translate(-50%,-50%) scale
   </div>
   <div id="sprintBtn">SPRINT</div>
 </div>
+
 <script type="module">
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
-import {
-  getFirestore,doc,getDoc,setDoc,updateDoc,collection,addDoc,onSnapshot,
-  query,orderBy,limit,serverTimestamp,deleteDoc
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import { getFirestore,doc,getDoc,setDoc,updateDoc,collection,addDoc,onSnapshot,query,orderBy,limit,serverTimestamp,deleteDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import { getDatabase,ref,set,onValue,update,remove,serverTimestamp as rtdbTime } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
 const firebaseConfig={
   apiKey:"AIzaSyCaEAn9KYWHMw0LN0fWh4oDOcOu7JpAHRQ",
@@ -172,53 +168,29 @@ const firebaseConfig={
   storageBucket:"noizerunner-f8848.firebasestorage.app",
   messagingSenderId:"26726622455",
   appId:"1:26726622455:web:ef6bc0f0893c6a25999ff2",
-  measurementId:"G-74XWCXQJF9"
+  measurementId:"G-74XWCXQJF9",
+  databaseURL:"https://noizerunner-f8848-default-rtdb.firebaseio.com/"
 };
 
 const TAU=Math.PI*2,clamp=THREE.MathUtils.clamp,lerp=THREE.MathUtils.lerp,$=id=>document.getElementById(id);
-const ui={
-  dist:$("dist"),best:$("best"),speed:$("speed"),modePill:$("modePill"),modeText:$("modeText"),modeFill:$("modeFill"),
-  center:$("centerMessage"),prompt:$("prompt"),title:$("title"),infoBtn:$("infoBtn"),infoPanel:$("infoPanel"),sprintBtn:$("sprintBtn"),
-  hudBox:$("hudBox"),hudToggle:$("hudToggle"),globalList:$("globalList"),loginView:$("loginView"),profileView:$("profileView"),
-  userInput:$("userInput"),pinInput:$("pinInput"),loginBtn:$("loginBtn"),loginMsg:$("loginMsg"),profileUser:$("profileUser"),
-  pBest:$("pBest"),pScore:$("pScore"),pItems:$("pItems"),pFreq:$("pFreq"),pNotes:$("pNotes"),pDeaths:$("pDeaths"),pDist:$("pDist"),pGap:$("pGap"),pTop:$("pTop"),pRun:$("pRun"),
-  achSine:$("achSine"),achSquare:$("achSquare"),achTri:$("achTri"),achNoize:$("achNoize"),seqToast:$("seqToast"),
-  globalPrev:$("globalPrev"),globalNext:$("globalNext"),globalTitle:$("globalTitle"),statsPrev:$("statsPrev"),statsNext:$("statsNext"),statsTitle:$("statsTitle"),
-  statsPanel:$("statsPanel"),vsPanel:$("vsPanel"),usersToggle:$("usersToggle"),usersTitle:$("usersTitle"),usersPanel:$("usersPanel"),
-  lobbyStart:$("lobbyStart"),lobbyJoinMode:$("lobbyJoinMode"),lobbyGo:$("lobbyGo"),lobbyBox:$("lobbyBox"),lobbyMsg:$("lobbyMsg"),
-  debugPanel:$("debugPanel"),debugToggle:$("debugToggle"),fireMsg:$("fireMsg")
-};
+const METER_SCALE=1;
+const ui={dist:$("dist"),best:$("best"),speed:$("speed"),modePill:$("modePill"),modeText:$("modeText"),modeFill:$("modeFill"),center:$("centerMessage"),prompt:$("prompt"),title:$("title"),infoBtn:$("infoBtn"),infoPanel:$("infoPanel"),sprintBtn:$("sprintBtn"),hudBox:$("hudBox"),hudToggle:$("hudToggle"),globalList:$("globalList"),loginView:$("loginView"),profileView:$("profileView"),userInput:$("userInput"),pinInput:$("pinInput"),loginBtn:$("loginBtn"),loginMsg:$("loginMsg"),profileUser:$("profileUser"),pBest:$("pBest"),pItems:$("pItems"),pFreq:$("pFreq"),pNotes:$("pNotes"),pDeaths:$("pDeaths"),pDist:$("pDist"),pGap:$("pGap"),pTop:$("pTop"),pRun:$("pRun"),achSine:$("achSine"),achSquare:$("achSquare"),achTri:$("achTri"),achNoize:$("achNoize"),seqToast:$("seqToast"),globalPrev:$("globalPrev"),globalNext:$("globalNext"),globalTitle:$("globalTitle"),statsPrev:$("statsPrev"),statsNext:$("statsNext"),statsTitle:$("statsTitle"),statsPanel:$("statsPanel"),vsPanel:$("vsPanel"),usersToggle:$("usersToggle"),usersTitle:$("usersTitle"),usersPanel:$("usersPanel"),lobbyStart:$("lobbyStart"),lobbyJoinMode:$("lobbyJoinMode"),lobbyGo:$("lobbyGo"),lobbyBox:$("lobbyBox"),lobbyMsg:$("lobbyMsg"),debugPanel:$("debugPanel"),debugToggle:$("debugToggle"),fireMsg:$("fireMsg")};
 function debugLog(msg){const d=document.createElement("div");d.textContent=new Date().toLocaleTimeString()+"  "+msg;ui.debugPanel.appendChild(d);ui.debugPanel.scrollTop=ui.debugPanel.scrollHeight}
 window.onerror=(msg,src,line,col)=>{debugLog("ERROR: "+msg+" @ "+line+":"+col);ui.debugPanel.classList.add("show");return false};
 window.onunhandledrejection=e=>{debugLog("PROMISE: "+(e.reason?.message||e.reason));ui.debugPanel.classList.add("show")};
 
-let app=null,analytics=null,db=null,fireReady=false;
-let unsubScores=null,unsubUsers=null,unsubLobby=null,presenceTimer=null,currentLobbyId=null;
-try{app=initializeApp(firebaseConfig);try{analytics=getAnalytics(app)}catch(e){}db=getFirestore(app);fireReady=true;ui.fireMsg.textContent="SYNC ONLINE"}catch(e){fireReady=false;ui.fireMsg.textContent="LOCAL FALLBACK";debugLog("Firebase init failed: "+e.message)}
+let app=null,analytics=null,db=null,rtdb=null,fireReady=false,rtdbReady=false;
+try{app=initializeApp(firebaseConfig);try{analytics=getAnalytics(app)}catch(e){}db=getFirestore(app);rtdb=getDatabase(app);fireReady=true;rtdbReady=true;ui.fireMsg.textContent="SYNC ONLINE · RTDB READY"}catch(e){fireReady=false;rtdbReady=false;ui.fireMsg.textContent="LOCAL FALLBACK";debugLog("Firebase init failed: "+e.message)}
 
 const defaultAchievements=()=>({sine:false,square:false,triangle:false,noize:false});
-const blankStats=()=>({pin:"",best:0,score:0,items:0,freqSeqs:0,notesHit:0,deaths:0,distTrvld:0,gap:0,topSpeed:0,runMs:0,achievements:defaultAchievements()});
+const blankStats=()=>({pin:"",best:0,items:0,freqSeqs:0,notesHit:0,deaths:0,distTrvld:0,gap:0,topSpeed:0,runMs:0,achievements:defaultAchievements(),vs:{wins:0,losses:0,races:0,bestFinish:0}});
 function repairStats(raw={}){
-  const b=blankStats(),r={...b,...raw};
-  r.best=Number(r.best||0);r.score=Number(r.score||0);r.items=Number(r.items||0);r.freqSeqs=Number(r.freqSeqs||0);r.notesHit=Number(r.notesHit||0);
-  r.deaths=Number(r.deaths||0);r.distTrvld=Number(r.distTrvld||0);r.gap=Number(r.gap||0);r.topSpeed=Number(r.topSpeed||0);r.runMs=Number(r.runMs||0);
+  const r={...blankStats(),...raw};
+  r.best=Number(r.best||0);r.items=Number(r.items||0);r.freqSeqs=Number(r.freqSeqs||0);r.notesHit=Number(r.notesHit||0);r.deaths=Number(r.deaths||0);r.distTrvld=Number(r.distTrvld||0);r.gap=Number(r.gap||0);r.topSpeed=Number(r.topSpeed||0);r.runMs=Number(r.runMs||0);
   r.achievements={...defaultAchievements(),...(raw.achievements||{})};
+  r.vs={wins:0,losses:0,races:0,bestFinish:0,...(raw.vs||{})};
+  delete r.score;
   return r;
-}
-function mergeRunStats(base,runDist,run){
-  const p=repairStats(base);
-  p.best=Math.max(p.best||0,runDist||0);
-  p.score=Math.max(p.score||0,Math.floor((runDist||0)*10));
-  p.items=(p.items||0)+(run.items||0);
-  p.freqSeqs=(p.freqSeqs||0)+(run.freqSeqs||0);
-  p.notesHit=(p.notesHit||0)+(run.notesHit||0);
-  p.deaths=(p.deaths||0)+1;
-  p.distTrvld=(p.distTrvld||0)+Math.max(0,(runDist||0)-(run.distStart||0));
-  p.gap=Math.max(p.gap||0,run.gap||0);
-  p.topSpeed=Math.max(p.topSpeed||0,run.topSpeed||0);
-  p.runMs=(p.runMs||0)+(run.runMs||0);
-  applyAchievements(p);
-  return p;
 }
 function applyAchievements(p){
   p.achievements={...defaultAchievements(),...(p.achievements||{})};
@@ -228,12 +200,26 @@ function applyAchievements(p){
   if((p.best||0)>=5000)p.achievements.noize=true;
   return p;
 }
+function mergeRunStats(base,runDist,run){
+  const p=repairStats(base),d=Math.floor(runDist*METER_SCALE);
+  p.best=Math.max(p.best||0,d);
+  p.items=(p.items||0)+(run.items||0);
+  p.freqSeqs=(p.freqSeqs||0)+(run.freqSeqs||0);
+  p.notesHit=(p.notesHit||0)+(run.notesHit||0);
+  p.deaths=(p.deaths||0)+1;
+  p.distTrvld=(p.distTrvld||0)+Math.max(0,Math.floor((runDist-(run.distStart||0))*METER_SCALE));
+  p.gap=Math.max(p.gap||0,Math.floor((run.gap||0)*METER_SCALE));
+  p.topSpeed=Math.max(p.topSpeed||0,Math.floor(run.topSpeed||0));
+  p.runMs=(p.runMs||0)+(run.runMs||0);
+  return applyAchievements(p);
+}
 
-let store=JSON.parse(localStorage.getItem("noize_runner_store_v34_clean")||'{"users":{},"globalTop":[],"dailyTop":[]}');
+let store=JSON.parse(localStorage.getItem("noize_runner_store_v35_clean")||'{"users":{},"globalTop":[],"dailyTop":[]}');
 if(!store.users)store.users={};if(!store.globalTop)store.globalTop=[];if(!store.dailyTop)store.dailyTop=[];
+let unsubScores=null,unsubUsers=null,unsubPresence=null,unsubLobby=null,presenceTimer=null,currentLobbyId=null;
 let remoteUsers={},onlineUsers={},remoteTop=[],currentUser="ANON",loggedIn=false,globalTab=0,statsTab=0,usersOpen=false,userInspect=null,lobbyMode="none",localLobby=null,menuDirty=true,renderQueued=false,menuBusy=false;
 const globalTabs=["GLOBAL TOP 5","GLOBAL TOP 25","DAILY TOP"];
-function saveStore(){localStorage.setItem("noize_runner_store_v34_clean",JSON.stringify(store))}
+function saveStore(){localStorage.setItem("noize_runner_store_v35_clean",JSON.stringify(store))}
 function profile(){return loggedIn?repairStats(remoteUsers[currentUser]||store.users[currentUser]||{}):null}
 function ensureLocalUser(u,pin){if(!store.users[u])store.users[u]=blankStats();store.users[u]=repairStats(store.users[u]);if(pin)store.users[u].pin=pin;return store.users[u]}
 async function saveUserProfile(name,data){
@@ -248,7 +234,6 @@ async function repairProfileFromScores(name){
   const p=profile();
   if(p&&top>p.best){p.best=top;applyAchievements(p);await saveUserProfile(name,p)}
 }
-
 function markMenuDirty(){menuDirty=true;if(renderQueued)return;renderQueued=true;requestAnimationFrame(()=>{renderQueued=false;if(menuDirty&&ui.hudBox.classList.contains("open")&&!menuBusy){menuDirty=false;renderGlobal();renderProfile()}})}
 function safeClick(el,fn){if(!el)return;el.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();menuBusy=true;try{fn(e)}catch(err){debugLog(err.message)}requestAnimationFrame(()=>{menuBusy=false;markMenuDirty()})})}
 function inputShield(el){if(!el)return;["pointerdown","pointerup","pointermove","pointercancel","click","touchstart","touchend","touchmove"].forEach(type=>el.addEventListener(type,e=>e.stopPropagation(),{passive:false}))}
@@ -273,7 +258,6 @@ function renderUsers(){
     const p=repairStats(all[userInspect]);
     ui.usersPanel.innerHTML=`<div class="userViewTop"><b>${userInspect}</b><button class="smallBtn" id="backUsers">X</button></div>
     <div class="scoreLine"><span>BEST</span><b>${Math.floor(p.best||0)}m</b></div>
-    <div class="scoreLine"><span>SCORE</span><b>${Math.floor(p.score||0)}pts</b></div>
     <div class="scoreLine"><span>ITEMS</span><b>${p.items||0}</b></div>
     <div class="scoreLine"><span>FREQ SEQS</span><b>${p.freqSeqs||0}</b></div>
     <div class="scoreLine"><span>NOTES HIT</span><b>${p.notesHit||0}</b></div>
@@ -290,9 +274,9 @@ function renderUsers(){
 function renderLobby(){
   ui.lobbyBox.innerHTML="";
   if(lobbyMode==="start"){
-    const code=currentLobbyId||localLobby?.code||"-----",joined=localLobby?.joined||[currentUser];
-    ui.lobbyBox.innerHTML=`<div class="scoreLine"><span>LOBBY #</span><b>${code}</b></div><div style="margin-top:6px;color:white">JOINED</div><div>${joined.join(" · ")}</div><div class="scoreLine"><span>USERS</span><b>${joined.length}/2</b></div>`;
-    ui.lobbyGo.textContent=joined.length>=2?"READY":"LOCKED";ui.lobbyGo.classList.toggle("locked",joined.length<2);
+    const code=currentLobbyId||localLobby?.code||"-----",players=localLobby?.players?Object.keys(localLobby.players):(localLobby?.joined||[currentUser]),ready=players.length>=2;
+    ui.lobbyBox.innerHTML=`<div class="scoreLine"><span>LOBBY #</span><b>${code}</b></div><div style="margin-top:6px;color:white">JOINED</div><div>${players.join(" · ")}</div><div class="scoreLine"><span>USERS</span><b>${players.length}/4</b></div>`;
+    ui.lobbyGo.textContent=ready?"GO!":"LOCKED";ui.lobbyGo.classList.toggle("locked",!ready);
   }else if(lobbyMode==="join"){
     ui.lobbyBox.innerHTML=`<div class="consoleInput"><span>PIN #</span><input id="joinPinLive" maxlength="5" inputmode="numeric" placeholder="00000"><button id="joinBtnLive" class="smallBtn">JOIN</button></div>`;
     ui.lobbyGo.textContent="LOCKED";ui.lobbyGo.classList.add("locked");
@@ -304,9 +288,7 @@ function renderProfile(){
   ui.loginView.style.display=loggedIn?"none":"block";ui.profileView.style.display=loggedIn?"block":"none";
   ui.statsTitle.textContent=statsTab===0?"STATS":"VS STATS";ui.statsPanel.style.display=statsTab===0?"block":"none";ui.vsPanel.style.display=statsTab===1?"block":"none";
   if(p){
-    ui.profileUser.textContent=currentUser;ui.pBest.textContent=Math.floor(p.best||0)+"m";ui.pScore.textContent=Math.floor(p.score||0)+"pts";
-    ui.pItems.textContent=p.items||0;ui.pFreq.textContent=p.freqSeqs||0;ui.pNotes.textContent=p.notesHit||0;ui.pDeaths.textContent=p.deaths||0;
-    ui.pDist.textContent=Math.floor(p.distTrvld||0)+"m";ui.pGap.textContent=Math.floor(p.gap||0)+"m";ui.pTop.textContent=Math.floor(p.topSpeed||0);ui.pRun.textContent=Math.floor((p.runMs||0)/1000)+"s";
+    ui.profileUser.textContent=currentUser;ui.pBest.textContent=Math.floor(p.best||0)+"m";ui.pItems.textContent=p.items||0;ui.pFreq.textContent=p.freqSeqs||0;ui.pNotes.textContent=p.notesHit||0;ui.pDeaths.textContent=p.deaths||0;ui.pDist.textContent=Math.floor(p.distTrvld||0)+"m";ui.pGap.textContent=Math.floor(p.gap||0)+"m";ui.pTop.textContent=Math.floor(p.topSpeed||0);ui.pRun.textContent=Math.floor((p.runMs||0)/1000)+"s";
     ui.achSine.classList.toggle("on",!!p.achievements?.sine);ui.achSquare.classList.toggle("on",!!p.achievements?.square);ui.achTri.classList.toggle("on",!!p.achievements?.triangle);ui.achNoize.classList.toggle("on",!!p.achievements?.noize);
   }
   renderUsers();renderLobby();
@@ -316,26 +298,27 @@ async function fireListen(){
   try{
     unsubScores=onSnapshot(query(collection(db,"scores"),orderBy("dist","desc"),limit(25)),snap=>{remoteTop=snap.docs.map(d=>d.data());if(loggedIn)repairProfileFromScores(currentUser);markMenuDirty()});
     unsubUsers=onSnapshot(collection(db,"users"),snap=>{remoteUsers={};snap.docs.forEach(d=>{remoteUsers[d.id]=repairStats(d.data())});if(loggedIn&&remoteUsers[currentUser]){store.users[currentUser]=remoteUsers[currentUser];saveStore()}markMenuDirty()});
-    onSnapshot(collection(db,"presence"),snap=>{onlineUsers={};snap.docs.forEach(d=>{onlineUsers[d.id]=d.data()});markMenuDirty()});
+    unsubPresence=onSnapshot(collection(db,"presence"),snap=>{onlineUsers={};snap.docs.forEach(d=>{onlineUsers[d.id]=d.data()});markMenuDirty()});
   }catch(e){fireReady=false;ui.fireMsg.textContent="SYNC BLOCKED · LOCAL";debugLog("listen fail "+e.message)}
 }
 fireListen();
+
 async function loginAttempt(){
   const u=ui.userInput.value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,6)||"ANON",pin=ui.pinInput.value.replace(/[^0-9]/g,"").slice(0,4);
-  if(u==="ANON"){ui.loginMsg.textContent="ANON is session only.";return}
+  if(u==="ANON"){ui.loginMsg.textContent="ANON is global only.";return}
   if(pin.length!==4){ui.loginMsg.textContent="PIN needs 4 numbers.";return}
   ui.loginMsg.textContent="CHECKING...";
   try{
     if(fireReady&&db){
-      const ref=doc(db,"users",u),snap=await getDoc(ref);
+      const refDoc=doc(db,"users",u),snap=await getDoc(refDoc);
       if(!snap.exists()){
         const st=repairStats({pin,createdAt:serverTimestamp(),updatedAt:serverTimestamp()});
-        await setDoc(ref,st);remoteUsers[u]=st;
+        await setDoc(refDoc,st);remoteUsers[u]=st;
       }else{
         const data=repairStats(snap.data());
         if(data.pin!==pin){ui.loginMsg.textContent="Name taken / wrong PIN.";return}
         remoteUsers[u]=data;store.users[u]=data;saveStore();
-        await setDoc(ref,{...data,updatedAt:serverTimestamp()},{merge:true});
+        await setDoc(refDoc,{...data,updatedAt:serverTimestamp()},{merge:true});
       }
     }else{
       if(!store.users[u]){store.users[u]=blankStats();store.users[u].pin=pin}
@@ -350,30 +333,40 @@ async function loginAttempt(){
   currentUser=u;loggedIn=true;ensureLocalUser(u,pin);ui.loginMsg.textContent="";startPresence();await repairProfileFromScores(u);markMenuDirty();
 }
 function startPresence(){if(presenceTimer)clearInterval(presenceTimer);const beat=async()=>{if(!loggedIn)return;if(fireReady&&db){try{await setDoc(doc(db,"presence",currentUser),{user:currentUser,lastSeenMs:Date.now(),updatedAt:serverTimestamp()},{merge:true})}catch(e){}}};beat();presenceTimer=setInterval(beat,15000)}
-addEventListener("beforeunload",()=>{if(fireReady&&db&&loggedIn)deleteDoc(doc(db,"presence",currentUser)).catch(()=>{})});
-async function updateRecords(dist){
-  const name=loggedIn?currentUser:"ANON",day=new Date().toISOString().slice(0,10),record={user:name,dist:Math.floor(dist),day,createdAt:Date.now()};
-  if(!fireReady){store.globalTop.push(record);store.globalTop=store.globalTop.sort((a,b)=>b.dist-a.dist).slice(0,25);store.dailyTop=store.dailyTop.filter(r=>r.day===day);store.dailyTop.push(record);store.dailyTop=store.dailyTop.sort((a,b)=>b.dist-a.dist).slice(0,5)}
+addEventListener("beforeunload",()=>{if(fireReady&&db&&loggedIn)deleteDoc(doc(db,"presence",currentUser)).catch(()=>{});if(rtdbReady&&currentLobbyId&&loggedIn)remove(ref(rtdb,`lobbies/${currentLobbyId}/players/${currentUser}`)).catch(()=>{})});
+async function updateRecords(distRaw){
+  const dist=Math.floor(distRaw*METER_SCALE),name=loggedIn?currentUser:"ANON",day=new Date().toISOString().slice(0,10),record={user:name,dist,day,createdAt:Date.now()};
+  if(!fireReady){store.globalTop.push(record);store.globalTop=store.globalTop.sort((a,b)=>b.dist-a.dist).slice(0,25);store.dailyTop=store.dailyTop.filter(r=>r.day===day);store.dailyTop.push(record);store.dailyTop=store.dailyTop.sort((a,b)=>b.dist-a.dist).slice(0,5);saveStore()}
   if(fireReady&&db){try{await addDoc(collection(db,"scores"),{...record,createdAt:serverTimestamp()})}catch(e){debugLog("score save fail "+e.message)}}
   markMenuDirty();
 }
 async function createLobby(){
   if(!loggedIn){ui.lobbyMsg.textContent="Login first.";return}
-  lobbyMode="start";const code=String(Math.floor(10000+Math.random()*90000));currentLobbyId=code;localLobby={code,joined:[currentUser]};
+  lobbyMode="start";const code=String(Math.floor(10000+Math.random()*90000));currentLobbyId=code;localLobby={code,host:currentUser,status:"waiting",players:{[currentUser]:{user:currentUser,ready:false,x:0,y:0,dist:0,alive:true}}};
   if(unsubLobby){unsubLobby();unsubLobby=null}
-  if(fireReady&&db){try{await setDoc(doc(db,"lobbies",code),{code,host:currentUser,joined:[currentUser],status:"waiting",createdAt:serverTimestamp(),updatedAt:serverTimestamp()});unsubLobby=onSnapshot(doc(db,"lobbies",code),snap=>{if(snap.exists()){localLobby=snap.data();markMenuDirty()}})}catch(e){debugLog("lobby create fail "+e.message)}}
+  if(rtdbReady&&rtdb){try{await set(ref(rtdb,`lobbies/${code}`),{code,host:currentUser,status:"waiting",createdAt:Date.now(),updatedAt:Date.now(),players:{[currentUser]:{user:currentUser,ready:false,x:0,y:0,dist:0,alive:true,lastSeen:Date.now()}}});unsubLobby=onValue(ref(rtdb,`lobbies/${code}`),snap=>{if(snap.exists()){localLobby=snap.val();markMenuDirty()}})}catch(e){debugLog("RTDB lobby create fail "+e.message)}}
   ui.lobbyMsg.textContent="";markMenuDirty();
 }
 async function joinLobby(code){
   if(!loggedIn){ui.lobbyMsg.textContent="Login first.";return}
-  if(fireReady&&db){try{const ref=doc(db,"lobbies",code),snap=await getDoc(ref);if(!snap.exists()){ui.lobbyMsg.textContent="Lobby not found.";return}const data=snap.data(),joined=Array.from(new Set([...(data.joined||[]),currentUser])).slice(0,2);await updateDoc(ref,{joined,updatedAt:serverTimestamp()});currentLobbyId=code;localLobby={...data,joined};lobbyMode="start";if(unsubLobby)unsubLobby();unsubLobby=onSnapshot(ref,s=>{if(s.exists()){localLobby=s.data();markMenuDirty()}});ui.lobbyMsg.textContent="Joined lobby."}catch(e){ui.lobbyMsg.textContent="Join blocked. Local only.";debugLog("join fail "+e.message)}}else if(localLobby&&localLobby.code===code){if(!localLobby.joined.includes(currentUser))localLobby.joined.push(currentUser);lobbyMode="start";ui.lobbyMsg.textContent="Joined local lobby."}else ui.lobbyMsg.textContent="Lobby not found locally.";markMenuDirty();
+  currentLobbyId=code;lobbyMode="start";
+  if(unsubLobby){unsubLobby();unsubLobby=null}
+  if(rtdbReady&&rtdb){try{await update(ref(rtdb,`lobbies/${code}/players/${currentUser}`),{user:currentUser,ready:false,x:0,y:0,dist:0,alive:true,lastSeen:Date.now()});unsubLobby=onValue(ref(rtdb,`lobbies/${code}`),snap=>{if(snap.exists()){localLobby=snap.val();markMenuDirty()}else{ui.lobbyMsg.textContent="Lobby not found.";}});ui.lobbyMsg.textContent="Joined lobby."}catch(e){ui.lobbyMsg.textContent="Join blocked.";debugLog("join fail "+e.message)}}else ui.lobbyMsg.textContent="RTDB offline.";
+  markMenuDirty();
 }
+async function armRaceStart(){
+  if(!localLobby||!currentLobbyId)return;
+  const players=localLobby.players?Object.keys(localLobby.players):[];
+  if(players.length<2){ui.lobbyMsg.textContent="Need 2 players.";return}
+  if(rtdbReady&&rtdb){await update(ref(rtdb,`lobbies/${currentLobbyId}`),{status:"countdown",startAt:Date.now()+2800,updatedAt:Date.now()});ui.lobbyMsg.textContent="BEEP.. BEEP.. BEEEEEP!"}
+}
+
 safeClick(ui.loginBtn,()=>loginAttempt());safeClick(ui.infoBtn,()=>ui.infoPanel.classList.toggle("show"));safeClick(ui.debugToggle,()=>ui.debugPanel.classList.toggle("show"));
 safeClick(ui.hudToggle,()=>{ui.hudBox.classList.toggle("open");document.body.classList.toggle("consoleOpen",ui.hudBox.classList.contains("open"));ui.hudToggle.textContent=ui.hudBox.classList.contains("open")?"−":"□";markMenuDirty()});
 safeClick(ui.globalPrev,()=>{globalTab=(globalTab+2)%3;markMenuDirty()});safeClick(ui.globalNext,()=>{globalTab=(globalTab+1)%3;markMenuDirty()});
 safeClick(ui.statsPrev,()=>{statsTab=(statsTab+1)%2;markMenuDirty()});safeClick(ui.statsNext,()=>{statsTab=(statsTab+1)%2;markMenuDirty()});
 safeClick(ui.usersToggle,()=>{usersOpen=!usersOpen;if(!usersOpen)userInspect=null;markMenuDirty()});
-safeClick(ui.lobbyStart,()=>createLobby());safeClick(ui.lobbyJoinMode,()=>{lobbyMode="join";ui.lobbyMsg.textContent="";markMenuDirty()});safeClick(ui.lobbyGo,()=>{if(localLobby&&localLobby.joined?.length>=2)ui.lobbyMsg.textContent="READY. Race sync hook armed."});
+safeClick(ui.lobbyStart,()=>createLobby());safeClick(ui.lobbyJoinMode,()=>{lobbyMode="join";ui.lobbyMsg.textContent="";markMenuDirty()});safeClick(ui.lobbyGo,()=>armRaceStart());
 
 const scene=new THREE.Scene();scene.background=new THREE.Color(0x010305);scene.fog=new THREE.FogExp2(0x010305,.0047);
 const camera=new THREE.PerspectiveCamera(42,innerWidth/innerHeight,.1,900);camera.position.set(3,5,24);
@@ -414,7 +407,7 @@ function makePlatform(x,y,w,type,color=0x35dfff){const group=new THREE.Group();g
 function makeObstacle(x,y,platformW=16){const h=1+Math.random()*1.2,group=new THREE.Group();group.position.set(x,y,0);const spike=new THREE.Mesh(new THREE.ConeGeometry(.52,h,4),obstacleMat);spike.position.set(0,h*.5,0);spike.rotation.y=Math.PI/4;group.add(spike);const indicatorW=Math.min(3.9,Math.max(2.4,platformW*.2));const ring=new THREE.Mesh(new THREE.RingGeometry(indicatorW*.38,indicatorW*.55,54),new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.82,side:THREE.DoubleSide}));ring.rotation.x=-Math.PI/2;ring.position.set(0,.085,0);ring.scale.z=.38;group.add(ring);const redUnder=new THREE.Mesh(new THREE.RingGeometry(indicatorW*.58,indicatorW*.78,54),new THREE.MeshBasicMaterial({color:0xff1d45,transparent:true,opacity:.36,side:THREE.DoubleSide}));redUnder.rotation.x=-Math.PI/2;redUnder.position.set(0,.075,0);redUnder.scale.z=.38;group.add(redUnder);const glow=new THREE.Mesh(new THREE.ConeGeometry(.72,h*1.14,4),new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.24,depthWrite:false,side:THREE.DoubleSide}));glow.position.set(0,h*.5,0);glow.rotation.y=Math.PI/4;group.add(glow);group.userData={x,y,h,ring,redUnder,glow};world.add(group);obstacles.push(group)}
 function makeGate(x,y,modeKey){const group=new THREE.Group();group.position.set(x,y,0);const material=new THREE.MeshBasicMaterial({color:modes[modeKey].color,transparent:true,opacity:.9});const ring=new THREE.Mesh(new THREE.TorusGeometry(.8,.055,8,42),material);ring.rotation.y=Math.PI/2;group.add(ring);const inner=new THREE.Mesh(new THREE.TorusGeometry(.5,.025,8,30),material);inner.rotation.y=Math.PI/2;inner.rotation.z=Math.PI/4;group.add(inner);group.userData={x,y,modeKey,taken:false};world.add(group);gates.push(group);lastGateX=x}
 const rhythmBase=[-.2,.28,.95,-.45,1.35,.18,.62,-.68,1.65,.35,.05,1.15,-.3,.85];let rhythmI=0;
-function nextHeight(){let h=rhythmBase[(rhythmI++)%rhythmBase.length]-.22;if(player&&player.dist>1000)h+=(Math.random()-.5)*1.6;return clamp(h,-1.25,2.25)}
+function nextHeight(){let h=rhythmBase[(rhythmI++)%rhythmBase.length]-.22;if(player&&player.dist>1000/METER_SCALE)h+=(Math.random()-.5)*1.6;return clamp(h,-1.25,2.25)}
 function spawnChunk(){const modeKeys=Object.keys(modes).filter(k=>k!=="SINE"),color=modes[modeKeys[Math.floor(Math.random()*modeKeys.length)]].color;let x=nextX,segments=2+Math.floor(Math.random()*2);for(let i=0;i<segments;i++){const progress=player?player.dist:0,w=16+Math.random()*10,gap=8.4+Math.random()*6.8+Math.min(5.8,progress/250),y=nextHeight()+Math.sin(x*.055)*.22;const p=makePlatform(x+w/2,y,w,"roof",color);p.userData.lastGap=Math.max(0,x-lastPlatformEnd);lastPlatformEnd=x+w;if(progress>240&&Math.random()<Math.min(.08+(progress-240)/2600,.24))makeObstacle(x+w*.72,y+.12,w);if(x-lastGateX>150&&Math.random()<.115&&x>70)makeGate(x+w*.58,y+2.15+Math.random()*.65,modeKeys[Math.floor(Math.random()*modeKeys.length)]);x+=w+gap}nextX=x+7}
 function starLayer(count,size,opacity,zMin,zMax,color,vx){const geo=new THREE.BufferGeometry(),arr=[];for(let i=0;i<count;i++)arr.push((Math.random()-.5)*900,Math.random()*135-40,zMin-Math.random()*(zMax-zMin));geo.setAttribute("position",new THREE.Float32BufferAttribute(arr,3));const pts=new THREE.Points(geo,new THREE.PointsMaterial({color,size,transparent:true,opacity,depthWrite:false}));pts.userData={vx,baseOpacity:opacity,baseSize:size,color};bg.add(pts);return pts}
 const stars1=starLayer(1900,.1,1,-34,-124,0xbffff9,-.18),stars2=starLayer(1100,.21,.86,-20,-104,0x35dfff,-.36),stars3=starLayer(700,.34,.68,-48,-156,0xb544ff,-.62);
@@ -429,12 +422,14 @@ function makePlanet(parent,x,y,z,r,color,ring=false){const p=new THREE.Mesh(new 
 function spawnBgChunk(){const chunk=new THREE.Group();chunk.userData.x=bgNextX;const x0=bgNextX,w=140;for(let i=0;i<7;i++)makeWave(chunk,x0,8+i*.78,-118-i*7,w,0x69ffd0,2.9+i*.48,"mount",.82+i*.03,i*.72);for(let i=0;i<17;i++)makeWave(chunk,x0,3.2+i*.28,-18-i*2.6,w,[0x35dfff,0xff2d78,0x69ffd0,0xb544ff][i%4],.20+i*.035,i%4===0?"tri":i%4===1?"square":i%4===2?"sine":"noise",.82,i*.43);for(let i=0;i<28;i++)makeCityBlock(chunk,x0+Math.random()*w,-16-Math.random()*128,.65+Math.random()*2.4,3.5+Math.random()*17,[0xffffff,0x35dfff,0x69ffd0,0xff2d78][i%4]);if(Math.random()<.76)makePlanet(chunk,x0+26+Math.random()*105,9+Math.random()*20,-120-Math.random()*100,4.8+Math.random()*8.6,[0x2f7dff,0xb544ff,0xff2d78,0x35dfff,0x69ffd0,0xffffff][Math.floor(Math.random()*6)],Math.random()<.42);bg.add(chunk);bgChunks.push(chunk);bgNextX+=w}
 function updateBgChunks(){while(bgNextX<camera.position.x+820)spawnBgChunk();for(let i=bgChunks.length-1;i>=0;i--)if(bgChunks[i].userData.x<camera.position.x-660){bg.remove(bgChunks[i]);bgChunks.splice(i,1)}}
 function reseedBackground(){for(const c of bgChunks)bg.remove(c);bgChunks=[];bgNextX=-300;while(bgNextX<820)spawnBgChunk();stars1.position.x=0;stars2.position.x=0;stars3.position.x=0;grid.position.x=0}
+
 const particles=[],particleGeo=new THREE.SphereGeometry(.06,8,6),shardGeo=new THREE.IcosahedronGeometry(.11,0);
 function burst(x,y,color,count=14,power=1){for(let i=0;i<count;i++){const m=new THREE.Mesh(Math.random()<.58?particleGeo:shardGeo,new THREE.MeshBasicMaterial({color:[color,0x35dfff,0x69ffd0,0xff2d78,0xb544ff,0xffffff][Math.floor(Math.random()*6)],transparent:true,opacity:1}));m.position.set(x,y,(Math.random()-.5)*1.45);m.userData={vx:(Math.random()-.5)*9*power,vy:(Math.random()*5.5+1.5)*power,vz:(Math.random()-.5)*2.4,life:.4+Math.random()*.7,max:.85+Math.random()*.25,pulse:Math.random()*TAU};world.add(m);particles.push(m)}}
 function exhaustParticle(){const m=new THREE.Mesh(Math.random()<.65?particleGeo:shardGeo,new THREE.MeshBasicMaterial({color:[currentMode.color,0x35dfff,0x69ffd0,0xff2d78][Math.floor(Math.random()*4)],transparent:true,opacity:.98}));m.position.set(player.x-.95-Math.random()*1.5,player.y+1.05+(Math.random()-.5)*.9,.35+(Math.random()-.5)*1);m.userData={vx:-2.8-Math.random()*5.2,vy:(Math.random()-.5)*2.1,vz:(Math.random()-.5)*1.5,life:.7+Math.random()*.8,max:1,pulse:Math.random()*TAU};world.add(m);particles.push(m)}
 const pathTrail=new THREE.Group();world.add(pathTrail);const trailHistory=[],trailLines=[];
 function makeTrailLine(){const geo=new THREE.BufferGeometry(),pts=[];for(let i=0;i<100;i++)pts.push(new THREE.Vector3(0,0,0));geo.setFromPoints(pts);const line=new THREE.Line(geo,new THREE.LineBasicMaterial({color:0x69ffd0,transparent:true,opacity:.9}));line.frustumCulled=false;pathTrail.add(line);trailLines.push(line)}
 for(let i=0;i<5;i++)makeTrailLine();
+
 let audioCtx=null,master=null,drumTimer=0,musicStep=0,droneGain=null,droneOsc=null,bassTimer=0;
 function initAudio(){if(audioCtx)return;audioCtx=new (window.AudioContext||window.webkitAudioContext)();master=audioCtx.createGain();master.gain.value=.38;master.connect(audioCtx.destination);droneOsc=audioCtx.createOscillator();droneGain=audioCtx.createGain();droneOsc.type="sine";droneOsc.frequency.value=54;droneGain.gain.value=.008;droneOsc.connect(droneGain);droneGain.connect(master);droneOsc.start()}
 function tone(freq=220,dur=.12,type="sine",gain=.18,sweep=0,filter=1800){if(!audioCtx)return;const now=audioCtx.currentTime,o=audioCtx.createOscillator(),g=audioCtx.createGain(),f=audioCtx.createBiquadFilter();o.type=type;o.frequency.setValueAtTime(freq,now);if(sweep)o.frequency.exponentialRampToValueAtTime(Math.max(20,freq+sweep),now+dur);f.type="lowpass";f.frequency.setValueAtTime(filter,now);f.Q.value=3.5;g.gain.setValueAtTime(0,now);g.gain.linearRampToValueAtTime(gain,now+.01);g.gain.exponentialRampToValueAtTime(.001,now+dur);o.connect(f);f.connect(g);g.connect(master);o.start(now);o.stop(now+dur+.03)}
@@ -452,7 +447,7 @@ function sfxDoubleJump(){tone(440,.14,"triangle",.18,360,2600);tone(660,.18,"sin
 function sfxLand(platform){tone(72,.15,"triangle",.2,-32,1200);if(platform){const u=platform.userData;musicNote(u.notes[Math.max(0,u.lastPlayed)]*.52,"triangle",.11);runStats.gap=Math.max(runStats.gap,u.lastGap||0)}landBlend=1;runBlend=1;burst(player.x,player.y+.18,currentMode.color,28,1.25);skyPulse=.55;starPulse=.45}
 function sfxGate(){tone(440,.12,"sine",.16,440,3000);tone(660,.18,"triangle",.11,220,3200)}
 function sfxCrash(){tone(90,.22,"sawtooth",.24,-40,900);noiseHit(.28,.22)}
-function achievementCue(){bell(196,.34,.2);setTimeout(()=>bell(392,.32,.22),100);setTimeout(()=>bell(784,.45,.28),330);burst(player.x,player.y+2,0xffffff,150,3.1);skyPulse=1.8;starPulse=1.6;shake=.16}
+
 let player={x:0,y:1,prevY:1,vy:0,speed:12.8,baseSpeed:12.8,targetSpeed:12.8,onGround:false,groundPlatform:null,started:false,dead:false,hold:false,holdTime:0,jumpAge:0,dist:0,doubleReady:true,doubleTimer:0,doubleFallBoost:0,camPulse:0,coyote:0,jumpBuffer:0,modeTimer:0,sprinting:false};
 let runStats={notesHit:0,items:0,freqSeqs:0,seqStreak:0,distStart:0,gap:0,topSpeed:0,runMs:0};
 let pointerDown=false,downY=0,downTime=0,shake=0,t=0,skyPulse=0,itemPulse=0,actionPulse=0,starPulse=0,sessionBest=0,bestScore=0;ui.best.textContent="0m";
@@ -472,9 +467,13 @@ ui.sprintBtn.addEventListener("pointercancel",e=>{e.preventDefault();player.spri
 function landingPlatform(prevX,newX,prevY,newY){const prevFoot=prevY-.24,newFoot=newY-.24,minX=Math.min(prevX,newX)-.42,maxX=Math.max(prevX,newX)+.42;let best=null;for(const p of platforms){const u=p.userData,left=u.x-u.w/2-.55,right=u.x+u.w/2+.55,top=u.y+.04,xOverlap=maxX>=left&&minX<=right,crossing=prevFoot>=top-.38&&newFoot<=top+.34,close=newFoot<=top+.34&&newFoot>=top-1.05;if(xOverlap&&(crossing||close)&&player.vy<=1.5)if(!best||top>best.userData.y+.04)best=p}return best}
 function kill(){
   if(player.dead)return;player.dead=true;player.started=false;sfxCrash();burst(player.x,player.y+1,currentMode.color,76,2.1);shake=.12;skyPulse=1;starPulse=1;resetSeqStreak();
-  bestScore=Math.max(bestScore,player.dist);sessionBest=Math.max(sessionBest,player.dist);ui.best.textContent=Math.floor(bestScore)+"m";
+  bestScore=Math.max(bestScore,player.dist*METER_SCALE);sessionBest=Math.max(sessionBest,player.dist*METER_SCALE);ui.best.textContent=Math.floor(bestScore)+"m";
   if(loggedIn){const merged=mergeRunStats(profile()||ensureLocalUser(currentUser),player.dist,runStats);saveUserProfile(currentUser,merged)}
   updateRecords(player.dist);ui.prompt.textContent="TAP TO RESTART";ui.title.innerHTML="SIGNAL<br>LOST";ui.center.classList.remove("hidden");
+}
+async function syncRacePosition(){
+  if(!rtdbReady||!loggedIn||!currentLobbyId||!localLobby||localLobby.status!=="running")return;
+  try{await update(ref(rtdb,`lobbies/${currentLobbyId}/players/${currentUser}`),{x:player.x,y:player.y,dist:Math.floor(player.dist*METER_SCALE),alive:!player.dead,lastSeen:Date.now()})}catch(e){}
 }
 function physics(dt){
   if(!player.started||player.dead||ui.hudBox.classList.contains("open"))return;
@@ -513,12 +512,13 @@ function updateVisuals(dt){
   for(const g of gates){g.rotation.z+=dt*1.8;g.children[1].rotation.z-=dt*3.2;g.scale.setScalar(1+Math.sin(t*6+g.userData.x)*.08)}
   if(player.started&&!player.dead&&!ui.hudBox.classList.contains("open")){updatePathTrail(dt);if(Math.random()<.62+speedNorm*.32+(player.sprinting?.28:0))exhaustParticle()}
   for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.userData.life-=dt;p.position.x+=p.userData.vx*dt;p.position.y+=p.userData.vy*dt;p.position.z+=p.userData.vz*dt;p.userData.vy-=3.1*dt;p.rotation.x+=dt*5;p.rotation.y+=dt*4;const a=clamp(p.userData.life/p.userData.max,0,1),pulse=1+Math.sin(t*9+p.userData.pulse)*.35;p.material.opacity=a*.96;p.scale.setScalar((.7+a*2)*pulse);if(p.userData.life<=0){world.remove(p);particles.splice(i,1)}}
-  const shownBest=loggedIn&&profile()?Math.max(profile().best||0,player.dist,sessionBest):Math.max(bestScore,sessionBest,player.dist);
-  ui.dist.textContent=Math.max(0,Math.floor(player.dist))+"m";ui.best.textContent=Math.floor(shownBest)+"m";ui.speed.textContent=Math.floor(player.speed*10);
+  const shownBest=loggedIn&&profile()?Math.max(profile().best||0,Math.floor(player.dist*METER_SCALE),sessionBest):Math.max(bestScore,sessionBest,Math.floor(player.dist*METER_SCALE));
+  ui.dist.textContent=Math.max(0,Math.floor(player.dist*METER_SCALE))+"m";ui.best.textContent=Math.floor(shownBest)+"m";ui.speed.textContent=Math.floor(player.speed*10);
 }
+
 renderGlobal();renderProfile();resetGame();
-let last=performance.now();
-function animate(now){requestAnimationFrame(animate);const dt=Math.min(.033,(now-last)/1000||.016);last=now;t+=dt;physics(dt);groove(dt);updateVisuals(dt);renderer.render(scene,camera)}
+let last=performance.now(),raceSyncClock=0;
+function animate(now){requestAnimationFrame(animate);const dt=Math.min(.033,(now-last)/1000||.016);last=now;t+=dt;physics(dt);groove(dt);updateVisuals(dt);raceSyncClock+=dt;if(raceSyncClock>.18){raceSyncClock=0;syncRacePosition()}renderer.render(scene,camera)}
 requestAnimationFrame(animate);
 addEventListener("resize",()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);setCamera(true)});
 </script>

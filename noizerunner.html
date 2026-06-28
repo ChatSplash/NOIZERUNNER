@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>NOIZE / RUNNER V3.5</title>
+<title>NOIZE / RUNNER V3.6</title>
 <style>
 :root{--mint:#69ffd0;--cyan:#35dfff;--violet:#b544ff;--pink:#ff2d78;--bg:#010305;--text:#effff9;--muted:rgba(239,255,249,.62)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
@@ -77,7 +77,7 @@ body.consoleOpen #centerMessage{opacity:.12;transform:translate(-50%,-50%) scale
       <div id="infoBtn">i</div>
       <div>
         <div class="logo">NOIZE / RUNNER</div>
-        <div class="sub">FREQUENCY PLATFORMER V3.5</div>
+        <div class="sub">FREQUENCY PLATFORMER V3.6</div>
       </div>
     </div>
     <div id="hudBox">
@@ -88,11 +88,7 @@ body.consoleOpen #centerMessage{opacity:.12;transform:translate(-50%,-50%) scale
       <div id="modePill"><span id="modeText">SINE MODE</span><div id="modeFill"></div></div>
       <div id="console">
         <div id="fireMsg">SYNC BOOTING...</div>
-        <div class="switcher">
-          <button class="swBtn" id="globalPrev">&lt;</button>
-          <div class="switchTitle" id="globalTitle">GLOBAL TOP 5</div>
-          <button class="swBtn" id="globalNext">&gt;</button>
-        </div>
+        <div class="switcher"><button class="swBtn" id="globalPrev">&lt;</button><div class="switchTitle" id="globalTitle">GLOBAL TOP 5</div><button class="swBtn" id="globalNext">&gt;</button></div>
         <div id="globalList"></div>
         <hr>
         <div id="loginView">
@@ -101,51 +97,26 @@ body.consoleOpen #centerMessage{opacity:.12;transform:translate(-50%,-50%) scale
           <div id="loginMsg"></div>
         </div>
         <div id="profileView" style="display:none">
-          <div class="switcher">
-            <button class="swBtn" id="statsPrev">&lt;</button>
-            <div class="switchTitle" id="statsTitle">STATS</div>
-            <button class="swBtn" id="statsNext">&gt;</button>
-          </div>
+          <div class="switcher"><button class="swBtn" id="statsPrev">&lt;</button><div class="switchTitle" id="statsTitle">STATS</div><button class="swBtn" id="statsNext">&gt;</button></div>
           <div id="statsPanel">
-            <div class="scoreLine"><span>USER</span><b id="profileUser">ANON</b></div>
-            <div class="scoreLine"><span>BEST</span><b id="pBest">0m</b></div>
-            <div class="scoreLine"><span>ITEMS</span><b id="pItems">0</b></div>
-            <div class="scoreLine"><span>FREQ SEQS</span><b id="pFreq">0</b></div>
-            <div class="scoreLine"><span>NOTES HIT</span><b id="pNotes">0</b></div>
-            <div class="scoreLine"><span>LOST SIGNALS</span><b id="pDeaths">0</b></div>
-            <div class="scoreLine"><span>DIST TRVLD</span><b id="pDist">0m</b></div>
-            <div class="scoreLine"><span>GAP</span><b id="pGap">0m</b></div>
-            <div class="scoreLine"><span>TOP SPEED</span><b id="pTop">0</b></div>
-            <div class="scoreLine"><span>RUN</span><b id="pRun">0s</b></div>
+            <div class="scoreLine"><span>USER</span><b id="profileUser">ANON</b></div><div class="scoreLine"><span>BEST</span><b id="pBest">0m</b></div><div class="scoreLine"><span>ITEMS</span><b id="pItems">0</b></div><div class="scoreLine"><span>FREQ SEQS</span><b id="pFreq">0</b></div><div class="scoreLine"><span>NOTES HIT</span><b id="pNotes">0</b></div><div class="scoreLine"><span>LOST SIGNALS</span><b id="pDeaths">0</b></div><div class="scoreLine"><span>DIST TRVLD</span><b id="pDist">0m</b></div><div class="scoreLine"><span>GAP</span><b id="pGap">0m</b></div><div class="scoreLine"><span>TOP SPEED</span><b id="pTop">0</b></div><div class="scoreLine"><span>RUN</span><b id="pRun">0s</b></div>
           </div>
           <div id="vsPanel" style="display:none">
-            <div class="scoreLine"><span>VS MODE</span><b>RTDB LOBBY</b></div>
+            <div class="scoreLine"><span>VS MODE</span><b>LIVE RTDB</b></div>
             <hr>
             <div class="consoleInput"><button id="lobbyStart" class="smallBtn">START</button><button id="lobbyJoinMode" class="smallBtn">JOIN</button><button id="lobbyGo" class="smallBtn locked">LOCKED</button></div>
-            <div id="lobbyBox"></div>
-            <div id="lobbyMsg"></div>
+            <div id="lobbyBox"></div><div id="lobbyMsg"></div>
           </div>
-          <div class="usersHead" id="usersToggle"><span id="usersTitle">USERS 0/0 ▼</span></div>
-          <div id="usersPanel"></div>
-          <div class="diamondRail">
-            <div id="achSine" class="diamond3d cyan"></div>
-            <div id="achSquare" class="diamond3d red"></div>
-            <div id="achTri" class="diamond3d green"></div>
-            <div id="achNoize" class="diamond3d purple"></div>
-          </div>
+          <div class="usersHead" id="usersToggle"><span id="usersTitle">USERS 0/0 ▼</span></div><div id="usersPanel"></div>
+          <div class="diamondRail"><div id="achSine" class="diamond3d cyan"></div><div id="achSquare" class="diamond3d red"></div><div id="achTri" class="diamond3d green"></div><div id="achNoize" class="diamond3d purple"></div></div>
           <div class="achLabels"><span>2500</span><span>3K</span><span>4K</span><span>5K</span></div>
         </div>
         <button id="debugToggle" class="smallBtn">DBG</button>
       </div>
     </div>
   </div>
-  <div id="centerMessage">
-    <div id="title">NOIZE<br>RUNNER</div>
-    <div id="prompt">TAP TO BEGIN</div>
-    <div id="guide">Tap Jump • Double Tap to Double Jump • Hold Float • Swipe Down Drop • Hold Sprint</div>
-  </div>
-  <div id="seqToast">FREQ SEQ ×1</div>
-  <div id="debugPanel">DBG READY</div>
+  <div id="centerMessage"><div id="title">NOIZE<br>RUNNER</div><div id="prompt">TAP TO BEGIN</div><div id="guide">Tap Jump • Double Tap to Double Jump • Hold Float • Swipe Down Drop • Hold Sprint</div></div>
+  <div id="seqToast">FREQ SEQ ×1</div><div id="debugPanel">DBG READY</div>
   <div id="infoPanel">
     <div class="tip">Enter username top right to track stats, compete globally, and play VS modes.</div>
     <div class="helpBlock"><b>STANDARD</b>Tap Jump • Double Tap to Double Jump • Hold Float • Swipe Down Drop • Hold Sprint</div>
@@ -158,208 +129,58 @@ body.consoleOpen #centerMessage{opacity:.12;transform:translate(-50%,-50%) scale
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
-import { getFirestore,doc,getDoc,setDoc,updateDoc,collection,addDoc,onSnapshot,query,orderBy,limit,serverTimestamp,deleteDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-import { getDatabase,ref,set,onValue,update,remove,serverTimestamp as rtdbTime } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+import { getFirestore,doc,getDoc,setDoc,collection,addDoc,onSnapshot,query,orderBy,limit,serverTimestamp,deleteDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import { getDatabase,ref,set,onValue,update,remove } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
-const firebaseConfig={
-  apiKey:"AIzaSyCaEAn9KYWHMw0LN0fWh4oDOcOu7JpAHRQ",
-  authDomain:"noizerunner-f8848.firebaseapp.com",
-  projectId:"noizerunner-f8848",
-  storageBucket:"noizerunner-f8848.firebasestorage.app",
-  messagingSenderId:"26726622455",
-  appId:"1:26726622455:web:ef6bc0f0893c6a25999ff2",
-  measurementId:"G-74XWCXQJF9",
-  databaseURL:"https://noizerunner-f8848-default-rtdb.firebaseio.com/"
-};
+const firebaseConfig={apiKey:"AIzaSyCaEAn9KYWHMw0LN0fWh4oDOcOu7JpAHRQ",authDomain:"noizerunner-f8848.firebaseapp.com",projectId:"noizerunner-f8848",storageBucket:"noizerunner-f8848.firebasestorage.app",messagingSenderId:"26726622455",appId:"1:26726622455:web:ef6bc0f0893c6a25999ff2",measurementId:"G-74XWCXQJF9",databaseURL:"https://noizerunner-f8848-default-rtdb.firebaseio.com/"};
 
-const TAU=Math.PI*2,clamp=THREE.MathUtils.clamp,lerp=THREE.MathUtils.lerp,$=id=>document.getElementById(id);
-const METER_SCALE=1;
+const TAU=Math.PI*2,clamp=THREE.MathUtils.clamp,lerp=THREE.MathUtils.lerp,$=id=>document.getElementById(id),METER_SCALE=1;
 const ui={dist:$("dist"),best:$("best"),speed:$("speed"),modePill:$("modePill"),modeText:$("modeText"),modeFill:$("modeFill"),center:$("centerMessage"),prompt:$("prompt"),title:$("title"),infoBtn:$("infoBtn"),infoPanel:$("infoPanel"),sprintBtn:$("sprintBtn"),hudBox:$("hudBox"),hudToggle:$("hudToggle"),globalList:$("globalList"),loginView:$("loginView"),profileView:$("profileView"),userInput:$("userInput"),pinInput:$("pinInput"),loginBtn:$("loginBtn"),loginMsg:$("loginMsg"),profileUser:$("profileUser"),pBest:$("pBest"),pItems:$("pItems"),pFreq:$("pFreq"),pNotes:$("pNotes"),pDeaths:$("pDeaths"),pDist:$("pDist"),pGap:$("pGap"),pTop:$("pTop"),pRun:$("pRun"),achSine:$("achSine"),achSquare:$("achSquare"),achTri:$("achTri"),achNoize:$("achNoize"),seqToast:$("seqToast"),globalPrev:$("globalPrev"),globalNext:$("globalNext"),globalTitle:$("globalTitle"),statsPrev:$("statsPrev"),statsNext:$("statsNext"),statsTitle:$("statsTitle"),statsPanel:$("statsPanel"),vsPanel:$("vsPanel"),usersToggle:$("usersToggle"),usersTitle:$("usersTitle"),usersPanel:$("usersPanel"),lobbyStart:$("lobbyStart"),lobbyJoinMode:$("lobbyJoinMode"),lobbyGo:$("lobbyGo"),lobbyBox:$("lobbyBox"),lobbyMsg:$("lobbyMsg"),debugPanel:$("debugPanel"),debugToggle:$("debugToggle"),fireMsg:$("fireMsg")};
 function debugLog(msg){const d=document.createElement("div");d.textContent=new Date().toLocaleTimeString()+"  "+msg;ui.debugPanel.appendChild(d);ui.debugPanel.scrollTop=ui.debugPanel.scrollHeight}
 window.onerror=(msg,src,line,col)=>{debugLog("ERROR: "+msg+" @ "+line+":"+col);ui.debugPanel.classList.add("show");return false};
 window.onunhandledrejection=e=>{debugLog("PROMISE: "+(e.reason?.message||e.reason));ui.debugPanel.classList.add("show")};
 
 let app=null,analytics=null,db=null,rtdb=null,fireReady=false,rtdbReady=false;
-try{app=initializeApp(firebaseConfig);try{analytics=getAnalytics(app)}catch(e){}db=getFirestore(app);rtdb=getDatabase(app);fireReady=true;rtdbReady=true;ui.fireMsg.textContent="SYNC ONLINE · RTDB READY"}catch(e){fireReady=false;rtdbReady=false;ui.fireMsg.textContent="LOCAL FALLBACK";debugLog("Firebase init failed: "+e.message)}
+try{app=initializeApp(firebaseConfig);try{analytics=getAnalytics(app)}catch(e){}db=getFirestore(app);rtdb=getDatabase(app);fireReady=true;rtdbReady=true;ui.fireMsg.textContent="SYNC ONLINE · RTDB READY"}catch(e){ui.fireMsg.textContent="LOCAL FALLBACK";debugLog("Firebase init failed: "+e.message)}
 
 const defaultAchievements=()=>({sine:false,square:false,triangle:false,noize:false});
 const blankStats=()=>({pin:"",best:0,items:0,freqSeqs:0,notesHit:0,deaths:0,distTrvld:0,gap:0,topSpeed:0,runMs:0,achievements:defaultAchievements(),vs:{wins:0,losses:0,races:0,bestFinish:0}});
-function repairStats(raw={}){
-  const r={...blankStats(),...raw};
-  r.best=Number(r.best||0);r.items=Number(r.items||0);r.freqSeqs=Number(r.freqSeqs||0);r.notesHit=Number(r.notesHit||0);r.deaths=Number(r.deaths||0);r.distTrvld=Number(r.distTrvld||0);r.gap=Number(r.gap||0);r.topSpeed=Number(r.topSpeed||0);r.runMs=Number(r.runMs||0);
-  r.achievements={...defaultAchievements(),...(raw.achievements||{})};
-  r.vs={wins:0,losses:0,races:0,bestFinish:0,...(raw.vs||{})};
-  delete r.score;
-  return r;
-}
-function applyAchievements(p){
-  p.achievements={...defaultAchievements(),...(p.achievements||{})};
-  if((p.best||0)>=2500)p.achievements.sine=true;
-  if((p.best||0)>=3000)p.achievements.square=true;
-  if((p.best||0)>=4000)p.achievements.triangle=true;
-  if((p.best||0)>=5000)p.achievements.noize=true;
-  return p;
-}
-function mergeRunStats(base,runDist,run){
-  const p=repairStats(base),d=Math.floor(runDist*METER_SCALE);
-  p.best=Math.max(p.best||0,d);
-  p.items=(p.items||0)+(run.items||0);
-  p.freqSeqs=(p.freqSeqs||0)+(run.freqSeqs||0);
-  p.notesHit=(p.notesHit||0)+(run.notesHit||0);
-  p.deaths=(p.deaths||0)+1;
-  p.distTrvld=(p.distTrvld||0)+Math.max(0,Math.floor((runDist-(run.distStart||0))*METER_SCALE));
-  p.gap=Math.max(p.gap||0,Math.floor((run.gap||0)*METER_SCALE));
-  p.topSpeed=Math.max(p.topSpeed||0,Math.floor(run.topSpeed||0));
-  p.runMs=(p.runMs||0)+(run.runMs||0);
-  return applyAchievements(p);
-}
-
-let store=JSON.parse(localStorage.getItem("noize_runner_store_v35_clean")||'{"users":{},"globalTop":[],"dailyTop":[]}');
+function repairStats(raw={}){const r={...blankStats(),...raw};["best","items","freqSeqs","notesHit","deaths","distTrvld","gap","topSpeed","runMs"].forEach(k=>r[k]=Number(r[k]||0));r.achievements={...defaultAchievements(),...(raw.achievements||{})};r.vs={wins:0,losses:0,races:0,bestFinish:0,...(raw.vs||{})};delete r.score;return r}
+function applyAchievements(p){p.achievements={...defaultAchievements(),...(p.achievements||{})};if((p.best||0)>=2500)p.achievements.sine=true;if((p.best||0)>=3000)p.achievements.square=true;if((p.best||0)>=4000)p.achievements.triangle=true;if((p.best||0)>=5000)p.achievements.noize=true;return p}
+function mergeRunStats(base,runDist,run){const p=repairStats(base),d=Math.floor(runDist*METER_SCALE);p.best=Math.max(p.best||0,d);p.items+=(run.items||0);p.freqSeqs+=(run.freqSeqs||0);p.notesHit+=(run.notesHit||0);p.deaths++;p.distTrvld+=Math.max(0,Math.floor((runDist-(run.distStart||0))*METER_SCALE));p.gap=Math.max(p.gap||0,Math.floor((run.gap||0)*METER_SCALE));p.topSpeed=Math.max(p.topSpeed||0,Math.floor(run.topSpeed||0));p.runMs+=(run.runMs||0);return applyAchievements(p)}
+let store=JSON.parse(localStorage.getItem("noize_runner_store_v36")||localStorage.getItem("noize_runner_store_v35_clean")||'{"users":{},"globalTop":[],"dailyTop":[]}');
 if(!store.users)store.users={};if(!store.globalTop)store.globalTop=[];if(!store.dailyTop)store.dailyTop=[];
-let unsubScores=null,unsubUsers=null,unsubPresence=null,unsubLobby=null,presenceTimer=null,currentLobbyId=null;
-let remoteUsers={},onlineUsers={},remoteTop=[],currentUser="ANON",loggedIn=false,globalTab=0,statsTab=0,usersOpen=false,userInspect=null,lobbyMode="none",localLobby=null,menuDirty=true,renderQueued=false,menuBusy=false;
+let unsubScores=null,unsubUsers=null,unsubPresence=null,unsubLobby=null,presenceTimer=null,currentLobbyId=null,raceStartTimer=null;
+let remoteUsers={},onlineUsers={},remoteTop=[],currentUser="ANON",loggedIn=false,globalTab=0,statsTab=0,usersOpen=false,userInspect=null,lobbyMode="none",localLobby=null,menuDirty=true,renderQueued=false,menuBusy=false,raceBooted=false,vsRaceActive=false,vsFinishReported=false,vsFinishAt=2500;
 const globalTabs=["GLOBAL TOP 5","GLOBAL TOP 25","DAILY TOP"];
-function saveStore(){localStorage.setItem("noize_runner_store_v35_clean",JSON.stringify(store))}
+function saveStore(){localStorage.setItem("noize_runner_store_v36",JSON.stringify(store))}
 function profile(){return loggedIn?repairStats(remoteUsers[currentUser]||store.users[currentUser]||{}):null}
 function ensureLocalUser(u,pin){if(!store.users[u])store.users[u]=blankStats();store.users[u]=repairStats(store.users[u]);if(pin)store.users[u].pin=pin;return store.users[u]}
-async function saveUserProfile(name,data){
-  const clean=applyAchievements(repairStats(data));
-  store.users[name]=clean;saveStore();remoteUsers[name]=clean;
-  if(fireReady&&db){try{await setDoc(doc(db,"users",name),{...clean,updatedAt:serverTimestamp()},{merge:true})}catch(e){debugLog("profile save fail "+e.message)}}
-  markMenuDirty();
-}
-async function repairProfileFromScores(name){
-  if(!name||!remoteTop.length)return;
-  const top=remoteTop.filter(r=>r.user===name).reduce((m,r)=>Math.max(m,Number(r.dist||0)),0);
-  const p=profile();
-  if(p&&top>p.best){p.best=top;applyAchievements(p);await saveUserProfile(name,p)}
-}
+async function saveUserProfile(name,data){const clean=applyAchievements(repairStats(data));store.users[name]=clean;saveStore();remoteUsers[name]=clean;if(fireReady&&db){try{await setDoc(doc(db,"users",name),{...clean,updatedAt:serverTimestamp()},{merge:true})}catch(e){debugLog("profile save fail "+e.message)}}markMenuDirty()}
+async function repairProfileFromScores(name){if(!name||!remoteTop.length)return;const top=remoteTop.filter(r=>r.user===name).reduce((m,r)=>Math.max(m,Number(r.dist||0)),0),p=profile();if(p&&top>p.best){p.best=top;applyAchievements(p);await saveUserProfile(name,p)}}
 function markMenuDirty(){menuDirty=true;if(renderQueued)return;renderQueued=true;requestAnimationFrame(()=>{renderQueued=false;if(menuDirty&&ui.hudBox.classList.contains("open")&&!menuBusy){menuDirty=false;renderGlobal();renderProfile()}})}
 function safeClick(el,fn){if(!el)return;el.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();menuBusy=true;try{fn(e)}catch(err){debugLog(err.message)}requestAnimationFrame(()=>{menuBusy=false;markMenuDirty()})})}
 function inputShield(el){if(!el)return;["pointerdown","pointerup","pointermove","pointercancel","click","touchstart","touchend","touchmove"].forEach(type=>el.addEventListener(type,e=>e.stopPropagation(),{passive:false}))}
 inputShield(ui.hudBox);inputShield(ui.infoPanel);inputShield(ui.debugPanel);
 
-function renderGlobal(){
-  ui.globalTitle.textContent=globalTabs[globalTab];
-  let src=fireReady?remoteTop:(globalTab===2?store.dailyTop:store.globalTop);
-  const today=new Date().toISOString().slice(0,10);
-  if(globalTab===2)src=src.filter(r=>(r.day||"")===today);
-  const limitN=globalTab===1?25:5,top=[...src].sort((a,b)=>(b.dist||0)-(a.dist||0)).slice(0,limitN);
-  ui.globalList.innerHTML="";
-  for(let i=0;i<limitN;i++){const r=top[i]||{user:"---",dist:0},d=document.createElement("div");d.className="scoreLine";d.innerHTML=`<span>${i+1}. ${r.user||"---"}</span><b>${Math.floor(r.dist||0)}m</b>`;ui.globalList.appendChild(d)}
-}
-function renderUsers(){
-  const all=fireReady?remoteUsers:store.users,names=Object.keys(all);
-  const onlineSet=new Set(Object.keys(onlineUsers).filter(n=>Date.now()-(onlineUsers[n].lastSeenMs||0)<45000));if(loggedIn)onlineSet.add(currentUser);
-  const sorted=names.sort((a,b)=>(onlineSet.has(b)-onlineSet.has(a))||((all[b].best||0)-(all[a].best||0)));
-  ui.usersTitle.textContent=`USERS ${onlineSet.size}/${names.length} ${usersOpen?"▲":"▼"}`;
-  ui.usersPanel.style.display=usersOpen?"block":"none";ui.usersPanel.innerHTML="";if(!usersOpen)return;
-  if(userInspect&&all[userInspect]){
-    const p=repairStats(all[userInspect]);
-    ui.usersPanel.innerHTML=`<div class="userViewTop"><b>${userInspect}</b><button class="smallBtn" id="backUsers">X</button></div>
-    <div class="scoreLine"><span>BEST</span><b>${Math.floor(p.best||0)}m</b></div>
-    <div class="scoreLine"><span>ITEMS</span><b>${p.items||0}</b></div>
-    <div class="scoreLine"><span>FREQ SEQS</span><b>${p.freqSeqs||0}</b></div>
-    <div class="scoreLine"><span>NOTES HIT</span><b>${p.notesHit||0}</b></div>
-    <div class="scoreLine"><span>LOST SIGNALS</span><b>${p.deaths||0}</b></div>
-    <div class="scoreLine"><span>DIST TRVLD</span><b>${Math.floor(p.distTrvld||0)}m</b></div>
-    <div class="scoreLine"><span>GAP</span><b>${Math.floor(p.gap||0)}m</b></div>
-    <div class="scoreLine"><span>TOP SPEED</span><b>${Math.floor(p.topSpeed||0)}</b></div>
-    <div class="scoreLine"><span>RUN</span><b>${Math.floor((p.runMs||0)/1000)}s</b></div>`;
-    safeClick($("backUsers"),()=>{userInspect=null;markMenuDirty()});return;
-  }
-  if(!sorted.length){ui.usersPanel.innerHTML=`<div style="opacity:.6">No registered users yet.</div>`;return}
-  for(const name of sorted){const p=repairStats(all[name]),row=document.createElement("div");row.className="userRow";row.innerHTML=`<span><span class="dot">${onlineSet.has(name)?"🟢":"⚫️"}</span><span class="userName">${name}</span></span><b>${Math.floor(p.best||0)}m</b>`;safeClick(row,()=>{userInspect=name;markMenuDirty()});ui.usersPanel.appendChild(row)}
-}
-function renderLobby(){
-  ui.lobbyBox.innerHTML="";
-  if(lobbyMode==="start"){
-    const code=currentLobbyId||localLobby?.code||"-----",players=localLobby?.players?Object.keys(localLobby.players):(localLobby?.joined||[currentUser]),ready=players.length>=2;
-    ui.lobbyBox.innerHTML=`<div class="scoreLine"><span>LOBBY #</span><b>${code}</b></div><div style="margin-top:6px;color:white">JOINED</div><div>${players.join(" · ")}</div><div class="scoreLine"><span>USERS</span><b>${players.length}/4</b></div>`;
-    ui.lobbyGo.textContent=ready?"GO!":"LOCKED";ui.lobbyGo.classList.toggle("locked",!ready);
-  }else if(lobbyMode==="join"){
-    ui.lobbyBox.innerHTML=`<div class="consoleInput"><span>PIN #</span><input id="joinPinLive" maxlength="5" inputmode="numeric" placeholder="00000"><button id="joinBtnLive" class="smallBtn">JOIN</button></div>`;
-    ui.lobbyGo.textContent="LOCKED";ui.lobbyGo.classList.add("locked");
-    safeClick($("joinBtnLive"),async()=>{const code=$("joinPinLive").value.replace(/\D/g,"").slice(0,5);if(code.length!==5){ui.lobbyMsg.textContent="Need 5 numbers.";return}await joinLobby(code)});
-  }else{ui.lobbyGo.textContent="LOCKED";ui.lobbyGo.classList.add("locked")}
-}
-function renderProfile(){
-  const p=profile();
-  ui.loginView.style.display=loggedIn?"none":"block";ui.profileView.style.display=loggedIn?"block":"none";
-  ui.statsTitle.textContent=statsTab===0?"STATS":"VS STATS";ui.statsPanel.style.display=statsTab===0?"block":"none";ui.vsPanel.style.display=statsTab===1?"block":"none";
-  if(p){
-    ui.profileUser.textContent=currentUser;ui.pBest.textContent=Math.floor(p.best||0)+"m";ui.pItems.textContent=p.items||0;ui.pFreq.textContent=p.freqSeqs||0;ui.pNotes.textContent=p.notesHit||0;ui.pDeaths.textContent=p.deaths||0;ui.pDist.textContent=Math.floor(p.distTrvld||0)+"m";ui.pGap.textContent=Math.floor(p.gap||0)+"m";ui.pTop.textContent=Math.floor(p.topSpeed||0);ui.pRun.textContent=Math.floor((p.runMs||0)/1000)+"s";
-    ui.achSine.classList.toggle("on",!!p.achievements?.sine);ui.achSquare.classList.toggle("on",!!p.achievements?.square);ui.achTri.classList.toggle("on",!!p.achievements?.triangle);ui.achNoize.classList.toggle("on",!!p.achievements?.noize);
-  }
-  renderUsers();renderLobby();
-}
-async function fireListen(){
-  if(!fireReady||!db)return;
-  try{
-    unsubScores=onSnapshot(query(collection(db,"scores"),orderBy("dist","desc"),limit(25)),snap=>{remoteTop=snap.docs.map(d=>d.data());if(loggedIn)repairProfileFromScores(currentUser);markMenuDirty()});
-    unsubUsers=onSnapshot(collection(db,"users"),snap=>{remoteUsers={};snap.docs.forEach(d=>{remoteUsers[d.id]=repairStats(d.data())});if(loggedIn&&remoteUsers[currentUser]){store.users[currentUser]=remoteUsers[currentUser];saveStore()}markMenuDirty()});
-    unsubPresence=onSnapshot(collection(db,"presence"),snap=>{onlineUsers={};snap.docs.forEach(d=>{onlineUsers[d.id]=d.data()});markMenuDirty()});
-  }catch(e){fireReady=false;ui.fireMsg.textContent="SYNC BLOCKED · LOCAL";debugLog("listen fail "+e.message)}
-}
+function renderGlobal(){ui.globalTitle.textContent=globalTabs[globalTab];let src=fireReady?remoteTop:(globalTab===2?store.dailyTop:store.globalTop);const today=new Date().toISOString().slice(0,10);if(globalTab===2)src=src.filter(r=>(r.day||"")===today);const limitN=globalTab===1?25:5,top=[...src].sort((a,b)=>(b.dist||0)-(a.dist||0)).slice(0,limitN);ui.globalList.innerHTML="";for(let i=0;i<limitN;i++){const r=top[i]||{user:"---",dist:0},d=document.createElement("div");d.className="scoreLine";d.innerHTML=`<span>${i+1}. ${r.user||"---"}</span><b>${Math.floor(r.dist||0)}m</b>`;ui.globalList.appendChild(d)}}
+function renderUsers(){const all=fireReady?remoteUsers:store.users,names=Object.keys(all);const onlineSet=new Set(Object.keys(onlineUsers).filter(n=>Date.now()-(onlineUsers[n].lastSeenMs||0)<45000));if(loggedIn)onlineSet.add(currentUser);const sorted=names.sort((a,b)=>(onlineSet.has(b)-onlineSet.has(a))||((all[b].best||0)-(all[a].best||0)));ui.usersTitle.textContent=`USERS ${onlineSet.size}/${names.length} ${usersOpen?"▲":"▼"}`;ui.usersPanel.style.display=usersOpen?"block":"none";ui.usersPanel.innerHTML="";if(!usersOpen)return;if(userInspect&&all[userInspect]){const p=repairStats(all[userInspect]);ui.usersPanel.innerHTML=`<div class="userViewTop"><b>${userInspect}</b><button class="smallBtn" id="backUsers">X</button></div><div class="scoreLine"><span>BEST</span><b>${Math.floor(p.best||0)}m</b></div><div class="scoreLine"><span>ITEMS</span><b>${p.items||0}</b></div><div class="scoreLine"><span>FREQ SEQS</span><b>${p.freqSeqs||0}</b></div><div class="scoreLine"><span>NOTES HIT</span><b>${p.notesHit||0}</b></div><div class="scoreLine"><span>LOST SIGNALS</span><b>${p.deaths||0}</b></div><div class="scoreLine"><span>DIST TRVLD</span><b>${Math.floor(p.distTrvld||0)}m</b></div><div class="scoreLine"><span>GAP</span><b>${Math.floor(p.gap||0)}m</b></div><div class="scoreLine"><span>TOP SPEED</span><b>${Math.floor(p.topSpeed||0)}</b></div><div class="scoreLine"><span>RUN</span><b>${Math.floor((p.runMs||0)/1000)}s</b></div>`;safeClick($("backUsers"),()=>{userInspect=null;markMenuDirty()});return}if(!sorted.length){ui.usersPanel.innerHTML=`<div style="opacity:.6">No registered users yet.</div>`;return}for(const name of sorted){const p=repairStats(all[name]),row=document.createElement("div");row.className="userRow";row.innerHTML=`<span><span class="dot">${onlineSet.has(name)?"🟢":"⚫️"}</span><span class="userName">${name}</span></span><b>${Math.floor(p.best||0)}m</b>`;safeClick(row,()=>{userInspect=name;markMenuDirty()});ui.usersPanel.appendChild(row)}}
+function renderLobby(){ui.lobbyBox.innerHTML="";if(lobbyMode==="start"){const code=currentLobbyId||localLobby?.code||"-----",players=localLobby?.players?Object.keys(localLobby.players):(localLobby?.joined||[currentUser]),ready=players.length>=2,status=(localLobby?.status||"waiting").toUpperCase(),finish=Number(localLobby?.finishAt||vsFinishAt);ui.lobbyBox.innerHTML=`<div class="scoreLine"><span>LOBBY #</span><b>${code}</b></div><div class="scoreLine"><span>STATUS</span><b>${status}</b></div><div class="scoreLine"><span>FINISH</span><b>${finish}m</b></div><div style="margin-top:6px;color:white">JOINED</div><div>${players.join(" · ")}</div><div class="scoreLine"><span>USERS</span><b>${players.length}/4</b></div>`;ui.lobbyGo.textContent=ready?"GO!":"LOCKED";ui.lobbyGo.classList.toggle("locked",!ready)}else if(lobbyMode==="join"){ui.lobbyBox.innerHTML=`<div class="consoleInput"><span>PIN #</span><input id="joinPinLive" maxlength="5" inputmode="numeric" placeholder="00000"><button id="joinBtnLive" class="smallBtn">JOIN</button></div>`;ui.lobbyGo.textContent="LOCKED";ui.lobbyGo.classList.add("locked");safeClick($("joinBtnLive"),async()=>{const code=$("joinPinLive").value.replace(/\D/g,"").slice(0,5);if(code.length!==5){ui.lobbyMsg.textContent="Need 5 numbers.";return}await joinLobby(code)})}else{ui.lobbyGo.textContent="LOCKED";ui.lobbyGo.classList.add("locked")}}
+function renderProfile(){const p=profile();ui.loginView.style.display=loggedIn?"none":"block";ui.profileView.style.display=loggedIn?"block":"none";ui.statsTitle.textContent=statsTab===0?"STATS":"VS MODE";ui.statsPanel.style.display=statsTab===0?"block":"none";ui.vsPanel.style.display=statsTab===1?"block":"none";if(p){ui.profileUser.textContent=currentUser;ui.pBest.textContent=Math.floor(p.best||0)+"m";ui.pItems.textContent=p.items||0;ui.pFreq.textContent=p.freqSeqs||0;ui.pNotes.textContent=p.notesHit||0;ui.pDeaths.textContent=p.deaths||0;ui.pDist.textContent=Math.floor(p.distTrvld||0)+"m";ui.pGap.textContent=Math.floor(p.gap||0)+"m";ui.pTop.textContent=Math.floor(p.topSpeed||0);ui.pRun.textContent=Math.floor((p.runMs||0)/1000)+"s";ui.achSine.classList.toggle("on",!!p.achievements?.sine);ui.achSquare.classList.toggle("on",!!p.achievements?.square);ui.achTri.classList.toggle("on",!!p.achievements?.triangle);ui.achNoize.classList.toggle("on",!!p.achievements?.noize)}renderUsers();renderLobby()}
+async function fireListen(){if(!fireReady||!db)return;try{unsubScores=onSnapshot(query(collection(db,"scores"),orderBy("dist","desc"),limit(25)),snap=>{remoteTop=snap.docs.map(d=>d.data());if(loggedIn)repairProfileFromScores(currentUser);markMenuDirty()});unsubUsers=onSnapshot(collection(db,"users"),snap=>{remoteUsers={};snap.docs.forEach(d=>{remoteUsers[d.id]=repairStats(d.data())});if(loggedIn&&remoteUsers[currentUser]){store.users[currentUser]=remoteUsers[currentUser];saveStore()}markMenuDirty()});unsubPresence=onSnapshot(collection(db,"presence"),snap=>{onlineUsers={};snap.docs.forEach(d=>{onlineUsers[d.id]=d.data()});markMenuDirty()})}catch(e){fireReady=false;ui.fireMsg.textContent="SYNC BLOCKED · LOCAL";debugLog("listen fail "+e.message)}}
 fireListen();
 
-async function loginAttempt(){
-  const u=ui.userInput.value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,6)||"ANON",pin=ui.pinInput.value.replace(/[^0-9]/g,"").slice(0,4);
-  if(u==="ANON"){ui.loginMsg.textContent="ANON is global only.";return}
-  if(pin.length!==4){ui.loginMsg.textContent="PIN needs 4 numbers.";return}
-  ui.loginMsg.textContent="CHECKING...";
-  try{
-    if(fireReady&&db){
-      const refDoc=doc(db,"users",u),snap=await getDoc(refDoc);
-      if(!snap.exists()){
-        const st=repairStats({pin,createdAt:serverTimestamp(),updatedAt:serverTimestamp()});
-        await setDoc(refDoc,st);remoteUsers[u]=st;
-      }else{
-        const data=repairStats(snap.data());
-        if(data.pin!==pin){ui.loginMsg.textContent="Name taken / wrong PIN.";return}
-        remoteUsers[u]=data;store.users[u]=data;saveStore();
-        await setDoc(refDoc,{...data,updatedAt:serverTimestamp()},{merge:true});
-      }
-    }else{
-      if(!store.users[u]){store.users[u]=blankStats();store.users[u].pin=pin}
-      else if(store.users[u].pin!==pin){ui.loginMsg.textContent="Name taken / wrong PIN.";return}
-      store.users[u]=repairStats(store.users[u]);
-    }
-  }catch(e){
-    debugLog("login fail "+e.message);
-    if(!store.users[u]){store.users[u]=blankStats();store.users[u].pin=pin}
-    else if(store.users[u].pin!==pin){ui.loginMsg.textContent="Name taken / wrong PIN.";return}
-  }
-  currentUser=u;loggedIn=true;ensureLocalUser(u,pin);ui.loginMsg.textContent="";startPresence();await repairProfileFromScores(u);markMenuDirty();
-}
+async function loginAttempt(){const u=ui.userInput.value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,6)||"ANON",pin=ui.pinInput.value.replace(/[^0-9]/g,"").slice(0,4);if(u==="ANON"){ui.loginMsg.textContent="ANON is global only.";return}if(pin.length!==4){ui.loginMsg.textContent="PIN needs 4 numbers.";return}ui.loginMsg.textContent="CHECKING...";try{if(fireReady&&db){const refDoc=doc(db,"users",u),snap=await getDoc(refDoc);if(!snap.exists()){const st=repairStats({pin,createdAt:serverTimestamp(),updatedAt:serverTimestamp()});await setDoc(refDoc,st);remoteUsers[u]=st}else{const data=repairStats(snap.data());if(data.pin!==pin){ui.loginMsg.textContent="Name taken / wrong PIN.";return}remoteUsers[u]=data;store.users[u]=data;saveStore();await setDoc(refDoc,{...data,updatedAt:serverTimestamp()},{merge:true})}}else{if(!store.users[u]){store.users[u]=blankStats();store.users[u].pin=pin}else if(store.users[u].pin!==pin){ui.loginMsg.textContent="Name taken / wrong PIN.";return}store.users[u]=repairStats(store.users[u])}}catch(e){debugLog("login fail "+e.message);if(!store.users[u]){store.users[u]=blankStats();store.users[u].pin=pin}else if(store.users[u].pin!==pin){ui.loginMsg.textContent="Name taken / wrong PIN.";return}}currentUser=u;loggedIn=true;ensureLocalUser(u,pin);ui.loginMsg.textContent="";startPresence();await repairProfileFromScores(u);markMenuDirty()}
 function startPresence(){if(presenceTimer)clearInterval(presenceTimer);const beat=async()=>{if(!loggedIn)return;if(fireReady&&db){try{await setDoc(doc(db,"presence",currentUser),{user:currentUser,lastSeenMs:Date.now(),updatedAt:serverTimestamp()},{merge:true})}catch(e){}}};beat();presenceTimer=setInterval(beat,15000)}
 addEventListener("beforeunload",()=>{if(fireReady&&db&&loggedIn)deleteDoc(doc(db,"presence",currentUser)).catch(()=>{});if(rtdbReady&&currentLobbyId&&loggedIn)remove(ref(rtdb,`lobbies/${currentLobbyId}/players/${currentUser}`)).catch(()=>{})});
-async function updateRecords(distRaw){
-  const dist=Math.floor(distRaw*METER_SCALE),name=loggedIn?currentUser:"ANON",day=new Date().toISOString().slice(0,10),record={user:name,dist,day,createdAt:Date.now()};
-  if(!fireReady){store.globalTop.push(record);store.globalTop=store.globalTop.sort((a,b)=>b.dist-a.dist).slice(0,25);store.dailyTop=store.dailyTop.filter(r=>r.day===day);store.dailyTop.push(record);store.dailyTop=store.dailyTop.sort((a,b)=>b.dist-a.dist).slice(0,5);saveStore()}
-  if(fireReady&&db){try{await addDoc(collection(db,"scores"),{...record,createdAt:serverTimestamp()})}catch(e){debugLog("score save fail "+e.message)}}
-  markMenuDirty();
-}
-async function createLobby(){
-  if(!loggedIn){ui.lobbyMsg.textContent="Login first.";return}
-  lobbyMode="start";const code=String(Math.floor(10000+Math.random()*90000));currentLobbyId=code;localLobby={code,host:currentUser,status:"waiting",players:{[currentUser]:{user:currentUser,ready:false,x:0,y:0,dist:0,alive:true}}};
-  if(unsubLobby){unsubLobby();unsubLobby=null}
-  if(rtdbReady&&rtdb){try{await set(ref(rtdb,`lobbies/${code}`),{code,host:currentUser,status:"waiting",createdAt:Date.now(),updatedAt:Date.now(),players:{[currentUser]:{user:currentUser,ready:false,x:0,y:0,dist:0,alive:true,lastSeen:Date.now()}}});unsubLobby=onValue(ref(rtdb,`lobbies/${code}`),snap=>{if(snap.exists()){localLobby=snap.val();markMenuDirty()}})}catch(e){debugLog("RTDB lobby create fail "+e.message)}}
-  ui.lobbyMsg.textContent="";markMenuDirty();
-}
-async function joinLobby(code){
-  if(!loggedIn){ui.lobbyMsg.textContent="Login first.";return}
-  currentLobbyId=code;lobbyMode="start";
-  if(unsubLobby){unsubLobby();unsubLobby=null}
-  if(rtdbReady&&rtdb){try{await update(ref(rtdb,`lobbies/${code}/players/${currentUser}`),{user:currentUser,ready:false,x:0,y:0,dist:0,alive:true,lastSeen:Date.now()});unsubLobby=onValue(ref(rtdb,`lobbies/${code}`),snap=>{if(snap.exists()){localLobby=snap.val();markMenuDirty()}else{ui.lobbyMsg.textContent="Lobby not found.";}});ui.lobbyMsg.textContent="Joined lobby."}catch(e){ui.lobbyMsg.textContent="Join blocked.";debugLog("join fail "+e.message)}}else ui.lobbyMsg.textContent="RTDB offline.";
-  markMenuDirty();
-}
-async function armRaceStart(){
-  if(!localLobby||!currentLobbyId)return;
-  const players=localLobby.players?Object.keys(localLobby.players):[];
-  if(players.length<2){ui.lobbyMsg.textContent="Need 2 players.";return}
-  if(rtdbReady&&rtdb){await update(ref(rtdb,`lobbies/${currentLobbyId}`),{status:"countdown",startAt:Date.now()+2800,updatedAt:Date.now()});ui.lobbyMsg.textContent="BEEP.. BEEP.. BEEEEEP!"}
-}
+async function updateRecords(distRaw){const dist=Math.floor(distRaw*METER_SCALE),name=loggedIn?currentUser:"ANON",day=new Date().toISOString().slice(0,10),record={user:name,dist,day,createdAt:Date.now()};if(!fireReady){store.globalTop.push(record);store.globalTop=store.globalTop.sort((a,b)=>b.dist-a.dist).slice(0,25);store.dailyTop=store.dailyTop.filter(r=>r.day===day);store.dailyTop.push(record);store.dailyTop=store.dailyTop.sort((a,b)=>b.dist-a.dist).slice(0,5);saveStore()}if(fireReady&&db){try{await addDoc(collection(db,"scores"),{...record,createdAt:serverTimestamp()})}catch(e){debugLog("score save fail "+e.message)}}markMenuDirty()}
+
+function closeConsoleForRace(){ui.hudBox.classList.remove("open");document.body.classList.remove("consoleOpen");ui.hudToggle.textContent="□";ui.infoPanel.classList.remove("show");ui.debugPanel.classList.remove("show")}
+function handleLobbyState(){if(!localLobby||!currentLobbyId)return;const status=localLobby.status||"waiting",startAt=Number(localLobby.startAt||0);if(status==="countdown"){const left=startAt-Date.now();ui.lobbyMsg.textContent=left>1800?"BEEP..":left>800?"BEEP.. BEEP..":"BEEEEEP!";if(raceStartTimer)clearTimeout(raceStartTimer);raceStartTimer=setTimeout(()=>beginVsRace(),Math.max(0,left))}if(status==="running"&&!raceBooted)beginVsRace()}
+function beginVsRace(){if(raceBooted)return;raceBooted=true;vsRaceActive=true;vsFinishReported=false;ui.lobbyMsg.textContent="RACE LIVE!";closeConsoleForRace();resetGame();startGame()}
+async function createLobby(){if(!loggedIn){ui.lobbyMsg.textContent="Login first.";return}lobbyMode="start";raceBooted=false;vsRaceActive=false;vsFinishReported=false;const code=String(Math.floor(10000+Math.random()*90000));currentLobbyId=code;localLobby={code,host:currentUser,status:"waiting",finishAt:vsFinishAt,players:{[currentUser]:{user:currentUser,ready:false,x:0,y:0,dist:0,alive:true,finished:false,finishTime:0}}};if(unsubLobby){unsubLobby();unsubLobby=null}if(rtdbReady&&rtdb){try{await set(ref(rtdb,`lobbies/${code}`),{code,host:currentUser,status:"waiting",finishAt:vsFinishAt,createdAt:Date.now(),updatedAt:Date.now(),players:{[currentUser]:{user:currentUser,ready:false,x:0,y:0,dist:0,alive:true,finished:false,finishTime:0,lastSeen:Date.now()}}});unsubLobby=onValue(ref(rtdb,`lobbies/${code}`),snap=>{if(snap.exists()){localLobby=snap.val();handleLobbyState();markMenuDirty()}})}catch(e){debugLog("RTDB lobby create fail "+e.message);ui.lobbyMsg.textContent="Lobby create blocked."}}ui.lobbyMsg.textContent=ui.lobbyMsg.textContent||"";markMenuDirty()}
+async function joinLobby(code){if(!loggedIn){ui.lobbyMsg.textContent="Login first.";return}currentLobbyId=code;lobbyMode="start";raceBooted=false;vsRaceActive=false;vsFinishReported=false;if(unsubLobby){unsubLobby();unsubLobby=null}if(rtdbReady&&rtdb){try{await update(ref(rtdb,`lobbies/${code}/players/${currentUser}`),{user:currentUser,ready:false,x:0,y:0,dist:0,alive:true,finished:false,finishTime:0,lastSeen:Date.now()});unsubLobby=onValue(ref(rtdb,`lobbies/${code}`),snap=>{if(snap.exists()){localLobby=snap.val();handleLobbyState();markMenuDirty()}else{ui.lobbyMsg.textContent="Lobby not found."}});ui.lobbyMsg.textContent="Joined lobby."}catch(e){ui.lobbyMsg.textContent="Join blocked.";debugLog("join fail "+e.message)}}else ui.lobbyMsg.textContent="RTDB offline.";markMenuDirty()}
+async function armRaceStart(){if(!localLobby||!currentLobbyId)return;const players=localLobby.players?Object.keys(localLobby.players):[];if(players.length<2){ui.lobbyMsg.textContent="Need 2 players.";return}raceBooted=false;vsRaceActive=false;vsFinishReported=false;const startAt=Date.now()+2800;if(rtdbReady&&rtdb){await update(ref(rtdb,`lobbies/${currentLobbyId}`),{status:"countdown",startAt,finishAt:vsFinishAt,updatedAt:Date.now()});setTimeout(()=>update(ref(rtdb,`lobbies/${currentLobbyId}`),{status:"running",updatedAt:Date.now()}).catch(()=>{}),2900);ui.lobbyMsg.textContent="BEEP.. BEEP.. BEEEEEP!"}}
 
 safeClick(ui.loginBtn,()=>loginAttempt());safeClick(ui.infoBtn,()=>ui.infoPanel.classList.toggle("show"));safeClick(ui.debugToggle,()=>ui.debugPanel.classList.toggle("show"));
 safeClick(ui.hudToggle,()=>{ui.hudBox.classList.toggle("open");document.body.classList.toggle("consoleOpen",ui.hudBox.classList.contains("open"));ui.hudToggle.textContent=ui.hudBox.classList.contains("open")?"−":"□";markMenuDirty()});
@@ -376,7 +197,6 @@ const key=new THREE.DirectionalLight(0xffffff,3.4);key.position.set(-5,8,8);scen
 const rim=new THREE.DirectionalLight(0x35dfff,3.65);rim.position.set(5,4,-5);scene.add(rim);
 const fill=new THREE.DirectionalLight(0xff2d78,2.65);fill.position.set(-7,2,4);scene.add(fill);
 const world=new THREE.Group(),bg=new THREE.Group();scene.add(bg,world);
-
 function mat(color,metal=.9,rough=.14,flat=true,emissive=0,intensity=0){return new THREE.MeshStandardMaterial({color,roughness:rough,metalness:metal,flatShading:flat,emissive,emissiveIntensity:intensity})}
 const runnerMats={hot:mat(0xba123c,.94,.11,true,0xff004d,1.25),cyan:mat(0x0877d9,.96,.09,true,0x00c8ff,1.45),helmet:mat(0x8e20ff,.88,.08,false,0x7722ff,1.9),visor:mat(0xdfffff,.35,.03,false,0x35dfff,2.9),joint:mat(0xb9152f,.82,.13,true,0xff1648,.95)};
 const runner=new THREE.Group();runner.position.set(0,1,.35);runner.scale.set(.84,.84,.84);runner.rotation.y=Math.PI/2;world.add(runner);
@@ -408,7 +228,7 @@ function makeObstacle(x,y,platformW=16){const h=1+Math.random()*1.2,group=new TH
 function makeGate(x,y,modeKey){const group=new THREE.Group();group.position.set(x,y,0);const material=new THREE.MeshBasicMaterial({color:modes[modeKey].color,transparent:true,opacity:.9});const ring=new THREE.Mesh(new THREE.TorusGeometry(.8,.055,8,42),material);ring.rotation.y=Math.PI/2;group.add(ring);const inner=new THREE.Mesh(new THREE.TorusGeometry(.5,.025,8,30),material);inner.rotation.y=Math.PI/2;inner.rotation.z=Math.PI/4;group.add(inner);group.userData={x,y,modeKey,taken:false};world.add(group);gates.push(group);lastGateX=x}
 const rhythmBase=[-.2,.28,.95,-.45,1.35,.18,.62,-.68,1.65,.35,.05,1.15,-.3,.85];let rhythmI=0;
 function nextHeight(){let h=rhythmBase[(rhythmI++)%rhythmBase.length]-.22;if(player&&player.dist>1000/METER_SCALE)h+=(Math.random()-.5)*1.6;return clamp(h,-1.25,2.25)}
-function spawnChunk(){const modeKeys=Object.keys(modes).filter(k=>k!=="SINE"),color=modes[modeKeys[Math.floor(Math.random()*modeKeys.length)]].color;let x=nextX,segments=2+Math.floor(Math.random()*2);for(let i=0;i<segments;i++){const progress=player?player.dist:0,w=16+Math.random()*10,gap=8.4+Math.random()*6.8+Math.min(5.8,progress/250),y=nextHeight()+Math.sin(x*.055)*.22;const p=makePlatform(x+w/2,y,w,"roof",color);p.userData.lastGap=Math.max(0,x-lastPlatformEnd);lastPlatformEnd=x+w;if(progress>240&&Math.random()<Math.min(.08+(progress-240)/2600,.24))makeObstacle(x+w*.72,y+.12,w);if(x-lastGateX>150&&Math.random()<.115&&x>70)makeGate(x+w*.58,y+2.15+Math.random()*.65,modeKeys[Math.floor(Math.random()*modeKeys.length)]);x+=w+gap}nextX=x+7}
+function spawnChunk(){const modeKeys=Object.keys(modes).filter(k=>k!=="SINE"),color=modes[modeKeys[Math.floor(Math.random()*modeKeys.length)]].color;let x=nextX,segments=2+Math.floor(Math.random()*2);for(let i=0;i<segments;i++){const progress=player?player.dist:0,w=16+Math.random()*10,gap=8.4+Math.random()*6.8+Math.min(5.8,progress/250),y=nextHeight()+Math.sin(x*.055)*.22,p=makePlatform(x+w/2,y,w,"roof",color);p.userData.lastGap=Math.max(0,x-lastPlatformEnd);lastPlatformEnd=x+w;if(progress>240&&Math.random()<Math.min(.08+(progress-240)/2600,.24))makeObstacle(x+w*.72,y+.12,w);if(x-lastGateX>150&&Math.random()<.115&&x>70)makeGate(x+w*.58,y+2.15+Math.random()*.65,modeKeys[Math.floor(Math.random()*modeKeys.length)]);x+=w+gap}nextX=x+7}
 function starLayer(count,size,opacity,zMin,zMax,color,vx){const geo=new THREE.BufferGeometry(),arr=[];for(let i=0;i<count;i++)arr.push((Math.random()-.5)*900,Math.random()*135-40,zMin-Math.random()*(zMax-zMin));geo.setAttribute("position",new THREE.Float32BufferAttribute(arr,3));const pts=new THREE.Points(geo,new THREE.PointsMaterial({color,size,transparent:true,opacity,depthWrite:false}));pts.userData={vx,baseOpacity:opacity,baseSize:size,color};bg.add(pts);return pts}
 const stars1=starLayer(1900,.1,1,-34,-124,0xbffff9,-.18),stars2=starLayer(1100,.21,.86,-20,-104,0x35dfff,-.36),stars3=starLayer(700,.34,.68,-48,-156,0xb544ff,-.62);
 const grid=new THREE.Group();bg.add(grid);
@@ -465,56 +285,14 @@ ui.sprintBtn.addEventListener("pointerdown",e=>{if(menuBlockingInput())return;e.
 ui.sprintBtn.addEventListener("pointerup",e=>{e.preventDefault();e.stopPropagation();player.sprinting=false;ui.sprintBtn.classList.remove("on")},{passive:false});
 ui.sprintBtn.addEventListener("pointercancel",e=>{e.preventDefault();player.sprinting=false;ui.sprintBtn.classList.remove("on")},{passive:false});
 function landingPlatform(prevX,newX,prevY,newY){const prevFoot=prevY-.24,newFoot=newY-.24,minX=Math.min(prevX,newX)-.42,maxX=Math.max(prevX,newX)+.42;let best=null;for(const p of platforms){const u=p.userData,left=u.x-u.w/2-.55,right=u.x+u.w/2+.55,top=u.y+.04,xOverlap=maxX>=left&&minX<=right,crossing=prevFoot>=top-.38&&newFoot<=top+.34,close=newFoot<=top+.34&&newFoot>=top-1.05;if(xOverlap&&(crossing||close)&&player.vy<=1.5)if(!best||top>best.userData.y+.04)best=p}return best}
-function kill(){
-  if(player.dead)return;player.dead=true;player.started=false;sfxCrash();burst(player.x,player.y+1,currentMode.color,76,2.1);shake=.12;skyPulse=1;starPulse=1;resetSeqStreak();
-  bestScore=Math.max(bestScore,player.dist*METER_SCALE);sessionBest=Math.max(sessionBest,player.dist*METER_SCALE);ui.best.textContent=Math.floor(bestScore)+"m";
-  if(loggedIn){const merged=mergeRunStats(profile()||ensureLocalUser(currentUser),player.dist,runStats);saveUserProfile(currentUser,merged)}
-  updateRecords(player.dist);ui.prompt.textContent="TAP TO RESTART";ui.title.innerHTML="SIGNAL<br>LOST";ui.center.classList.remove("hidden");
-}
-async function syncRacePosition(){
-  if(!rtdbReady||!loggedIn||!currentLobbyId||!localLobby||localLobby.status!=="running")return;
-  try{await update(ref(rtdb,`lobbies/${currentLobbyId}/players/${currentUser}`),{x:player.x,y:player.y,dist:Math.floor(player.dist*METER_SCALE),alive:!player.dead,lastSeen:Date.now()})}catch(e){}
-}
-function physics(dt){
-  if(!player.started||player.dead||ui.hudBox.classList.contains("open"))return;
-  const prevX=player.x,prevY=player.y,sprintBoost=player.sprinting?4.4:0;player.targetSpeed=player.baseSpeed*currentMode.speedMul+clamp(player.dist/240,0,6.6)+sprintBoost;player.speed=lerp(player.speed,player.targetSpeed,dt*(player.sprinting?2.2:1.35));runStats.topSpeed=Math.max(runStats.topSpeed,player.speed*10);runStats.runMs+=dt*1000;
-  if(player.doubleTimer>0)player.doubleTimer-=dt;if(player.doubleFallBoost>0)player.doubleFallBoost-=dt;if(player.camPulse>0)player.camPulse-=dt;if(player.coyote>0)player.coyote-=dt;if(player.jumpBuffer>0)player.jumpBuffer-=dt;
-  if(player.modeTimer>0){player.modeTimer-=dt;ui.modeFill.style.width=Math.max(0,player.modeTimer/15*100)+"%";if(player.modeTimer<=0)setMode("SINE",false)}
-  player.x+=player.speed*dt;player.dist=player.x;
-  if(player.hold&&!player.onGround&&player.holdTime<.18){player.vy+=currentMode.hold*dt;player.holdTime+=dt}
-  const extraFall=player.doubleFallBoost>0?currentMode.doubleGravityBoost:0,fallBoost=player.vy<0?4.2:0;player.vy-=(currentMode.gravity+extraFall+fallBoost)*dt;player.y+=player.vy*dt;player.jumpAge+=dt;
-  const platform=landingPlatform(prevX,player.x,prevY,player.y);
-  if(platform){if(!player.onGround)sfxLand(platform);player.y=platform.userData.y+.28;player.vy=0;player.onGround=true;player.groundPlatform=platform;platform.userData.touched=true;player.jumpAge=0;player.doubleReady=true;player.doubleFallBoost=0;player.coyote=.12;if(player.jumpBuffer>0)doGroundJump()}
-  else{if(player.onGround){player.coyote=.12;if(player.groundPlatform&&!player.groundPlatform.userData.seqDone)resetSeqStreak()}player.onGround=false;player.groundPlatform=null}
-  if(player.y<-8)kill();
-  for(const o of obstacles){const dx=Math.abs(player.x-o.userData.x),oy=o.userData.y;if(dx<.52&&player.y<oy+o.userData.h+.45&&player.y>oy-.5)kill()}
-  for(const g of gates){if(g.userData.taken)continue;const minX=Math.min(prevX,player.x)-.85,maxX=Math.max(prevX,player.x)+.85,xHit=maxX>=g.userData.x-.95&&minX<=g.userData.x+.95,yHit=Math.abs((player.y+1.3)-g.userData.y)<1.25;if(xHit&&yHit){g.userData.taken=true;runStats.items++;setMode(g.userData.modeKey,true);g.visible=false}}
-  while(nextX<player.x+280)spawnChunk();
-  for(let i=platforms.length-1;i>=0;i--){const p=platforms[i],u=p.userData;if(!u.missChecked&&u.x+u.w/2<player.x-1){u.missChecked=true;if(!u.seqDone)resetSeqStreak()}if(u.x+u.w<player.x-95){world.remove(p);platforms.splice(i,1)}}
-  for(let i=obstacles.length-1;i>=0;i--)if(obstacles[i].userData.x<player.x-95){world.remove(obstacles[i]);obstacles.splice(i,1)}
-  for(let i=gates.length-1;i>=0;i--)if(gates[i].userData.x<player.x-95){world.remove(gates[i]);gates.splice(i,1)}
-  platformMelody();
-}
+function kill(){if(player.dead)return;player.dead=true;player.started=false;sfxCrash();burst(player.x,player.y+1,currentMode.color,76,2.1);shake=.12;skyPulse=1;starPulse=1;resetSeqStreak();bestScore=Math.max(bestScore,player.dist*METER_SCALE);sessionBest=Math.max(sessionBest,player.dist*METER_SCALE);ui.best.textContent=Math.floor(bestScore)+"m";if(loggedIn){const merged=mergeRunStats(profile()||ensureLocalUser(currentUser),player.dist,runStats);saveUserProfile(currentUser,merged)}updateRecords(player.dist);ui.prompt.textContent=vsRaceActive?"VS SIGNAL LOST":"TAP TO RESTART";ui.title.innerHTML="SIGNAL<br>LOST";ui.center.classList.remove("hidden")}
+async function syncRacePosition(){if(!rtdbReady||!loggedIn||!currentLobbyId||!localLobby)return;const status=localLobby.status||"waiting";if(status!=="running"&&status!=="countdown")return;const finish=Number(localLobby.finishAt||vsFinishAt),finished=player.dist*METER_SCALE>=finish;if(finished&&!vsFinishReported){vsFinishReported=true;player.dead=true;player.started=false;ui.title.innerHTML="VS<br>FINISH";ui.prompt.textContent="RACE COMPLETE";ui.center.classList.remove("hidden")}try{await update(ref(rtdb,`lobbies/${currentLobbyId}/players/${currentUser}`),{x:player.x,y:player.y,dist:Math.floor(player.dist*METER_SCALE),alive:!player.dead,finished,finishTime:finished?Date.now():0,lastSeen:Date.now()})}catch(e){}}
+function physics(dt){if(!player.started||player.dead||ui.hudBox.classList.contains("open"))return;const prevX=player.x,prevY=player.y,sprintBoost=player.sprinting?4.4:0;player.targetSpeed=player.baseSpeed*currentMode.speedMul+clamp(player.dist/240,0,6.6)+sprintBoost;player.speed=lerp(player.speed,player.targetSpeed,dt*(player.sprinting?2.2:1.35));runStats.topSpeed=Math.max(runStats.topSpeed,player.speed*10);runStats.runMs+=dt*1000;if(player.doubleTimer>0)player.doubleTimer-=dt;if(player.doubleFallBoost>0)player.doubleFallBoost-=dt;if(player.camPulse>0)player.camPulse-=dt;if(player.coyote>0)player.coyote-=dt;if(player.jumpBuffer>0)player.jumpBuffer-=dt;if(player.modeTimer>0){player.modeTimer-=dt;ui.modeFill.style.width=Math.max(0,player.modeTimer/15*100)+"%";if(player.modeTimer<=0)setMode("SINE",false)}player.x+=player.speed*dt;player.dist=player.x;if(player.hold&&!player.onGround&&player.holdTime<.18){player.vy+=currentMode.hold*dt;player.holdTime+=dt}const extraFall=player.doubleFallBoost>0?currentMode.doubleGravityBoost:0,fallBoost=player.vy<0?4.2:0;player.vy-=(currentMode.gravity+extraFall+fallBoost)*dt;player.y+=player.vy*dt;player.jumpAge+=dt;const platform=landingPlatform(prevX,player.x,prevY,player.y);if(platform){if(!player.onGround)sfxLand(platform);player.y=platform.userData.y+.28;player.vy=0;player.onGround=true;player.groundPlatform=platform;platform.userData.touched=true;player.jumpAge=0;player.doubleReady=true;player.doubleFallBoost=0;player.coyote=.12;if(player.jumpBuffer>0)doGroundJump()}else{if(player.onGround){player.coyote=.12;if(player.groundPlatform&&!player.groundPlatform.userData.seqDone)resetSeqStreak()}player.onGround=false;player.groundPlatform=null}if(player.y<-8)kill();for(const o of obstacles){const dx=Math.abs(player.x-o.userData.x),oy=o.userData.y;if(dx<.52&&player.y<oy+o.userData.h+.45&&player.y>oy-.5)kill()}for(const g of gates){if(g.userData.taken)continue;const minX=Math.min(prevX,player.x)-.85,maxX=Math.max(prevX,player.x)+.85,xHit=maxX>=g.userData.x-.95&&minX<=g.userData.x+.95,yHit=Math.abs((player.y+1.3)-g.userData.y)<1.25;if(xHit&&yHit){g.userData.taken=true;runStats.items++;setMode(g.userData.modeKey,true);g.visible=false}}while(nextX<player.x+280)spawnChunk();for(let i=platforms.length-1;i>=0;i--){const p=platforms[i],u=p.userData;if(!u.missChecked&&u.x+u.w/2<player.x-1){u.missChecked=true;if(!u.seqDone)resetSeqStreak()}if(u.x+u.w<player.x-95){world.remove(p);platforms.splice(i,1)}}for(let i=obstacles.length-1;i>=0;i--)if(obstacles[i].userData.x<player.x-95){world.remove(obstacles[i]);obstacles.splice(i,1)}for(let i=gates.length-1;i>=0;i--)if(gates[i].userData.x<player.x-95){world.remove(gates[i]);gates.splice(i,1)}platformMelody()}
 function camParams(){return innerHeight>innerWidth?{z:47,y:7.2,ahead:4.2,look:4}:{z:25.2,y:4.15,ahead:8.4,look:7.3}}
 function setCamera(immediate=false){const c=camParams(),speedNorm=clamp((player.speed-8)/24,0,1),pulse=player.camPulse>0?Math.sin((player.camPulse/.5)*Math.PI)*4.8:0,tx=player.x+c.ahead,ty=clamp(player.y+c.y,3.1,11.5),tz=c.z-speedNorm*1.15+pulse;if(immediate)camera.position.set(tx,ty,tz);else{camera.position.x=lerp(camera.position.x,tx,.1);camera.position.y=lerp(camera.position.y,ty,.08);camera.position.z=lerp(camera.position.z,tz,.075)}if(shake>0){shake-=.016;camera.position.x+=(Math.random()-.5)*shake*.18;camera.position.y+=(Math.random()-.5)*shake*.12}camera.lookAt(player.x+c.look,player.y+1.75,0)}
-function updateWaveObject(o){const u=o.userData;if(!u.wave)return;const pos=o.geometry.attributes.position;const modeActive=player.modeTimer>0&&currentMode.name!=="SINE";let mode=modeActive?currentMode.wave:u.type;const ampBoost=1+skyPulse*.72+itemPulse*1.1+actionPulse*.66+(player.sprinting?.45:0);if(modeActive)o.material.color.setHex(currentMode.color);else o.material.color.setHex(u.color);o.material.opacity=clamp(u.baseOpacity+skyPulse*.18+itemPulse*.26+(player.sprinting?.12:0),0,1);for(let i=0;i<pos.count;i++){const q=i/(pos.count-1),x=u.x0+q*u.w,globalQ=x/140;let y=u.y+waveY(globalQ,mode,u.amp*ampBoost,t*(u.type==="mount"?.7:1.55),u.phase);pos.setXYZ(i,x,y,u.z)}pos.needsUpdate=true}
+function updateWaveObject(o){const u=o.userData;if(!u.wave)return;const pos=o.geometry.attributes.position,modeActive=player.modeTimer>0&&currentMode.name!=="SINE";let mode=modeActive?currentMode.wave:u.type;const ampBoost=1+skyPulse*.72+itemPulse*1.1+actionPulse*.66+(player.sprinting?.45:0);if(modeActive)o.material.color.setHex(currentMode.color);else o.material.color.setHex(u.color);o.material.opacity=clamp(u.baseOpacity+skyPulse*.18+itemPulse*.26+(player.sprinting?.12:0),0,1);for(let i=0;i<pos.count;i++){const q=i/(pos.count-1),x=u.x0+q*u.w,globalQ=x/140,y=u.y+waveY(globalQ,mode,u.amp*ampBoost,t*(u.type==="mount"?.7:1.55),u.phase);pos.setXYZ(i,x,y,u.z)}pos.needsUpdate=true}
 function updatePathTrail(dt){trailHistory.unshift({x:player.x,y:player.y+1.18,z:.45,life:currentMode.trailLife});if(trailHistory.length>118)trailHistory.pop();for(const p of trailHistory)p.life-=dt;while(trailHistory.length&&trailHistory[trailHistory.length-1].life<=0)trailHistory.pop();for(let l=0;l<trailLines.length;l++){const line=trailLines[l],pos=line.geometry.attributes.position;for(let i=0;i<pos.count;i++){const q=i/(pos.count-1),idx=Math.min(trailHistory.length-1,Math.floor(q*(trailHistory.length-1))),p=trailHistory[idx]||trailHistory[trailHistory.length-1]||{x:player.x,y:player.y+1.18,z:.45};let modeWiggle=0;if(currentMode.wave==="square")modeWiggle=(Math.sin(q*TAU*7+t*8)>0?1:-1)*.055;else if(currentMode.wave==="tri"){const v=(q*9+t*.9)%1;modeWiggle=((v<.5?v*2:(1-v)*2)*2-1)*.08}else if(currentMode.wave==="noise")modeWiggle=Math.sin(q*TAU*21+t*12)*.08+Math.sin(q*TAU*43)*.04;else modeWiggle=Math.sin(q*TAU*4+t*9+l*1.7)*(.09+l*.025);const plume=(l-2)*.18*(1-q),wiggle=modeWiggle*(1-q);pos.setXYZ(i,p.x,p.y+wiggle+Math.abs(plume)*.35,p.z+plume)}pos.needsUpdate=true;line.material.color.setHex(l===2?0x69ffd0:l%2?currentMode.color:0x35dfff);line.material.opacity=trailHistory.length>4?.86-l*.08:0}}
-function updateVisuals(dt){
-  const speedNorm=clamp((player.speed-8)/24,0,1),animSpeed=clamp(speedNorm,.24,.66);
-  runner.position.set(player.x,player.y,.35);runner.rotation.y=Math.PI/2;runner.rotation.z=lerp(runner.rotation.z,player.sprinting?-.54:player.onGround?-.4:-.36,dt*10);runner.rotation.x=lerp(runner.rotation.x,player.sprinting?.08:.04,dt*6);runner.position.y+=player.onGround?Math.sin(t*(18+animSpeed*7))*.045*animSpeed:0;const squash=player.onGround?1+Math.sin(t*28)*.014*animSpeed:1;runner.scale.set(.84/squash,.84*squash,.84);
-  posePlayer(dt,animSpeed,player.onGround,clamp(player.jumpAge*2,0,1),clamp(player.doubleTimer/.34,0,1));setCamera(false);
-  grid.position.x=camera.position.x;
-  for(const s of [stars1,stars2,stars3]){s.position.x=camera.position.x+((t*s.userData.vx*12)%160);s.position.y=0;s.rotation.z+=dt*.00025;s.material.size=s.userData.baseSize*(1+starPulse*.7+(player.sprinting?.15:0));s.material.opacity=clamp(s.userData.baseOpacity+starPulse*.18+itemPulse*.1+(player.sprinting?.06:0),0,1);s.material.color.setHex(itemPulse>.02?currentMode.color:s.userData.color)}
-  updateBgChunks();for(const chunk of bgChunks)for(const o of chunk.children){updateWaveObject(o,dt);if(o.rotation){o.rotation.x+=(o.userData?.rx||0)*dt;o.rotation.y+=(o.userData?.ry||0)*dt}}
-  if(skyPulse>0)skyPulse=Math.max(0,skyPulse-dt*1.25);if(itemPulse>0)itemPulse=Math.max(0,itemPulse-dt*(player.modeTimer>0?.075:.9));if(actionPulse>0)actionPulse=Math.max(0,actionPulse-dt*1.35);if(starPulse>0)starPulse=Math.max(0,starPulse-dt*1.05);
-  for(const p of platforms){const u=p.userData;for(let i=0;i<u.segCount;i++){if(u.segPulse[i]>0)u.segPulse[i]=Math.max(0,u.segPulse[i]-dt*2.8);const m=u.segMeshes[i];if(m){m.material.opacity=.1+u.segPulse[i]*.78;m.scale.y=1+u.segPulse[i]*2.5}}}
-  for(const o of obstacles){const u=o.userData,pulse=.75+Math.sin(t*8+u.x)*.25;u.ring.rotation.z-=dt*2.1;u.redUnder.rotation.z+=dt*1.1;u.ring.material.opacity=.55+pulse*.3;u.redUnder.material.opacity=.28+pulse*.22;u.glow.material.opacity=.16+pulse*.18}
-  for(const g of gates){g.rotation.z+=dt*1.8;g.children[1].rotation.z-=dt*3.2;g.scale.setScalar(1+Math.sin(t*6+g.userData.x)*.08)}
-  if(player.started&&!player.dead&&!ui.hudBox.classList.contains("open")){updatePathTrail(dt);if(Math.random()<.62+speedNorm*.32+(player.sprinting?.28:0))exhaustParticle()}
-  for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.userData.life-=dt;p.position.x+=p.userData.vx*dt;p.position.y+=p.userData.vy*dt;p.position.z+=p.userData.vz*dt;p.userData.vy-=3.1*dt;p.rotation.x+=dt*5;p.rotation.y+=dt*4;const a=clamp(p.userData.life/p.userData.max,0,1),pulse=1+Math.sin(t*9+p.userData.pulse)*.35;p.material.opacity=a*.96;p.scale.setScalar((.7+a*2)*pulse);if(p.userData.life<=0){world.remove(p);particles.splice(i,1)}}
-  const shownBest=loggedIn&&profile()?Math.max(profile().best||0,Math.floor(player.dist*METER_SCALE),sessionBest):Math.max(bestScore,sessionBest,Math.floor(player.dist*METER_SCALE));
-  ui.dist.textContent=Math.max(0,Math.floor(player.dist*METER_SCALE))+"m";ui.best.textContent=Math.floor(shownBest)+"m";ui.speed.textContent=Math.floor(player.speed*10);
-}
+function updateVisuals(dt){const speedNorm=clamp((player.speed-8)/24,0,1),animSpeed=clamp(speedNorm,.24,.66);runner.position.set(player.x,player.y,.35);runner.rotation.y=Math.PI/2;runner.rotation.z=lerp(runner.rotation.z,player.sprinting?-.54:player.onGround?-.4:-.36,dt*10);runner.rotation.x=lerp(runner.rotation.x,player.sprinting?.08:.04,dt*6);runner.position.y+=player.onGround?Math.sin(t*(18+animSpeed*7))*.045*animSpeed:0;const squash=player.onGround?1+Math.sin(t*28)*.014*animSpeed:1;runner.scale.set(.84/squash,.84*squash,.84);posePlayer(dt,animSpeed,player.onGround,clamp(player.jumpAge*2,0,1),clamp(player.doubleTimer/.34,0,1));setCamera(false);grid.position.x=camera.position.x;for(const s of [stars1,stars2,stars3]){s.position.x=camera.position.x+((t*s.userData.vx*12)%160);s.position.y=0;s.rotation.z+=dt*.00025;s.material.size=s.userData.baseSize*(1+starPulse*.7+(player.sprinting?.15:0));s.material.opacity=clamp(s.userData.baseOpacity+starPulse*.18+itemPulse*.1+(player.sprinting?.06:0),0,1);s.material.color.setHex(itemPulse>.02?currentMode.color:s.userData.color)}updateBgChunks();for(const chunk of bgChunks)for(const o of chunk.children){updateWaveObject(o,dt);if(o.rotation){o.rotation.x+=(o.userData?.rx||0)*dt;o.rotation.y+=(o.userData?.ry||0)*dt}}if(skyPulse>0)skyPulse=Math.max(0,skyPulse-dt*1.25);if(itemPulse>0)itemPulse=Math.max(0,itemPulse-dt*(player.modeTimer>0?.075:.9));if(actionPulse>0)actionPulse=Math.max(0,actionPulse-dt*1.35);if(starPulse>0)starPulse=Math.max(0,starPulse-dt*1.05);for(const p of platforms){const u=p.userData;for(let i=0;i<u.segCount;i++){if(u.segPulse[i]>0)u.segPulse[i]=Math.max(0,u.segPulse[i]-dt*2.8);const m=u.segMeshes[i];if(m){m.material.opacity=.1+u.segPulse[i]*.78;m.scale.y=1+u.segPulse[i]*2.5}}}for(const o of obstacles){const u=o.userData,pulse=.75+Math.sin(t*8+u.x)*.25;u.ring.rotation.z-=dt*2.1;u.redUnder.rotation.z+=dt*1.1;u.ring.material.opacity=.55+pulse*.3;u.redUnder.material.opacity=.28+pulse*.22;u.glow.material.opacity=.16+pulse*.18}for(const g of gates){g.rotation.z+=dt*1.8;g.children[1].rotation.z-=dt*3.2;g.scale.setScalar(1+Math.sin(t*6+g.userData.x)*.08)}if(player.started&&!player.dead&&!ui.hudBox.classList.contains("open")){updatePathTrail(dt);if(Math.random()<.62+speedNorm*.32+(player.sprinting?.28:0))exhaustParticle()}for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.userData.life-=dt;p.position.x+=p.userData.vx*dt;p.position.y+=p.userData.vy*dt;p.position.z+=p.userData.vz*dt;p.userData.vy-=3.1*dt;p.rotation.x+=dt*5;p.rotation.y+=dt*4;const a=clamp(p.userData.life/p.userData.max,0,1),pulse=1+Math.sin(t*9+p.userData.pulse)*.35;p.material.opacity=a*.96;p.scale.setScalar((.7+a*2)*pulse);if(p.userData.life<=0){world.remove(p);particles.splice(i,1)}}const shownBest=loggedIn&&profile()?Math.max(profile().best||0,Math.floor(player.dist*METER_SCALE),sessionBest):Math.max(bestScore,sessionBest,Math.floor(player.dist*METER_SCALE));ui.dist.textContent=Math.max(0,Math.floor(player.dist*METER_SCALE))+"m";ui.best.textContent=Math.floor(shownBest)+"m";ui.speed.textContent=Math.floor(player.speed*10)}
 
 renderGlobal();renderProfile();resetGame();
 let last=performance.now(),raceSyncClock=0;
